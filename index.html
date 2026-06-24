@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Aura Wellness | The Zero-Friction Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Noto+Sans+Sinhala:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ─── FOUNDATION & 8PT GRID SYSTEM ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Soft Wellness Palette */
+  --bg-core:      #FAF7F2; /* Warm Cream */
+  --bg-surface:   #FFFFFF;
+  --bg-alt:       #F2EBE5; /* Soft Sand */
+  
+  --border-sub:   #E8E0D9;
+  --border-foc:   #D4A373; 
+  
+  --text-primary: #3E3636; /* Deep muted plum/charcoal */
+  --text-muted:   #7A7070; 
+  
+  /* Thematic Accents */
+  --c-blush:      #E5B5B3; /* Soft Rose/Blush */
+  --c-blush-dim:  rgba(229, 181, 179, 0.15);
+  --c-sage:       #A3B19B; /* Calming Green */
+  --c-sage-dim:   rgba(163, 177, 155, 0.15);
+  --c-terra:      #D4A373; /* Warm Earth */
+
+  /* Spacing */
+  --sp-1: 8px;  --sp-2: 16px; --sp-3: 24px; --sp-4: 32px; --sp-6: 48px; --sp-8: 64px;
+  
+  /* Radii & Motion */
+  --r-btn: 100px;
+  --r-card: 24px;
+  --trans-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Fonts */
+  --f-heading-en: 'Playfair Display', serif;
+  --f-heading-si: 'Abhaya Libre', serif;
+  --f-body-en:    'Inter', sans-serif;
+  --f-body-si:    'Noto Sans Sinhala', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background-color: var(--bg-core);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  background-image: 
+    radial-gradient(circle at 10% 0%, rgba(229, 181, 179, 0.2) 0%, transparent 40%),
+    radial-gradient(circle at 90% 100%, rgba(163, 177, 155, 0.15) 0%, transparent 40%);
+  padding-bottom: var(--sp-8);
+}
+
+/* ─── BILINGUAL STATE MANAGEMENT ─── */
+[data-lang="si"] .en { display: none !important; }
+[data-lang="en"] .si { display: none !important; }
+
+body[data-lang="si"] .heading { font-family: var(--f-heading-si); letter-spacing: 0.02em; }
+body[data-lang="en"] .heading { font-family: var(--f-heading-en); letter-spacing: -0.01em; }
+
+body[data-lang="si"] .body-text { font-family: var(--f-body-si); line-height: 1.8; }
+body[data-lang="en"] .body-text { font-family: var(--f-body-en); line-height: 1.6; }
+
+/* ─── LAYOUT ─── */
+.container {
+  width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 32px);
+  display: flex; flex-direction: column; gap: var(--sp-6);
+}
+
+/* Navigation */
+.top-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: var(--sp-3) 0; border-bottom: 1px solid var(--border-sub);
+}
+.logo { font-size: 22px; font-weight: 600; color: var(--c-terra); display: flex; align-items: center; gap: 8px; }
+
+.lang-toggle {
+  display: inline-flex; align-items: center; gap: var(--sp-1);
+  background: var(--bg-surface); border: 1px solid var(--border-sub);
+  color: var(--text-primary); padding: 8px 20px; border-radius: var(--r-btn);
+  font-family: var(--f-body-en); font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: all var(--trans-base); box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+.lang-toggle:hover { border-color: var(--c-terra); color: var(--c-terra); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(212, 163, 115, 0.1); }
+.lang-toggle:active { transform: scale(0.96); }
+
+/* ─── HERO ─── */
+.hero { 
+  text-align: center; padding: clamp(32px, 6vw, 64px) 0 clamp(16px, 3vw, 32px); 
+  max-width: 800px; margin: 0 auto; animation: fadeUp 0.8s ease both;
+}
+.eyebrow {
+  display: inline-flex; font-family: var(--f-body-en); font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.15em; color: var(--c-sage);
+  margin-bottom: var(--sp-2); padding: 6px 16px; background: var(--c-sage-dim); border-radius: var(--r-btn);
+}
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin-bottom: var(--sp-3); font-style: italic; font-weight: 500; color: var(--text-primary); }
+.hero p { color: var(--text-muted); font-size: clamp(15px, 3vw, 17px); margin-bottom: var(--sp-4); }
+
+.stats-row {
+  display: flex; justify-content: center; gap: var(--sp-2); flex-wrap: wrap;
+}
+.stat-pill {
+  background: var(--bg-surface); border: 1px solid var(--border-sub);
+  padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; gap: 10px;
+  font-size: 14px; font-weight: 500; color: var(--text-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+.stat-pill i { color: var(--c-blush); font-size: 16px; }
+
+/* ─── DIAGNOSIS BENTO GRID ─── */
+.section-title { font-size: 28px; margin-bottom: var(--sp-3); border-bottom: 1px solid var(--border-sub); padding-bottom: 12px; color: var(--text-primary); }
+
+.bento-grid { display: grid; grid-template-columns: 1fr; gap: var(--sp-3); animation: fadeUp 0.8s ease 0.2s both; }
+@media(min-width: 768px) { .bento-grid { grid-template-columns: 1fr 1fr; } .b-span-2 { grid-column: 1 / -1; } }
+
+.card {
+  background: var(--bg-surface); border: 1px solid var(--border-sub);
+  border-radius: var(--r-card); padding: clamp(24px, 4vw, 32px);
+  transition: all var(--trans-base); display: flex; flex-direction: column; position: relative; overflow: hidden;
+}
+.card:hover { border-color: var(--c-blush); box-shadow: 0 12px 32px -8px rgba(229, 181, 179, 0.2); transform: translateY(-2px); }
+
+.c-icon { 
+  width: 48px; height: 48px; border-radius: 16px; background: var(--bg-alt);
+  display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--c-terra); margin-bottom: var(--sp-3);
+}
+.card h3 { font-size: 20px; margin-bottom: 12px; color: var(--text-primary); }
+.card p { color: var(--text-muted); font-size: 15px; }
+
+/* Thematic Top Borders */
+.card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; }
+.card.c-pcos::before { background: var(--c-blush); }
+.card.c-cort::before { background: var(--c-terra); }
+.card.c-sol::before { background: var(--c-sage); }
+
+/* ─── BED ROUTINE ─── */
+.routine-wrap {
+  background: var(--bg-surface); border: 1px solid var(--border-sub);
+  border-radius: var(--r-card); padding: clamp(24px, 4vw, 40px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.02);
+}
+.routine-intro { margin-bottom: var(--sp-4); }
+
+.exercise-list { display: flex; flex-direction: column; gap: var(--sp-2); }
+.ex-item {
+  display: flex; gap: var(--sp-3); align-items: flex-start; padding: var(--sp-3);
+  background: var(--bg-alt); border: 1px solid transparent; border-radius: 20px;
+  transition: all var(--trans-base);
+}
+.ex-item:hover { background: var(--bg-surface); border-color: var(--c-sage); box-shadow: 0 8px 20px rgba(163, 177, 155, 0.15); transform: translateX(4px); }
+
+.ex-num {
+  font-family: var(--f-heading-en); font-size: 32px; font-weight: 700; color: var(--c-sage);
+  width: 40px; text-align: center; flex-shrink: 0; line-height: 1;
+}
+.ex-content { flex: 1; }
+.ex-content h4 { font-size: 18px; margin-bottom: 8px; color: var(--text-primary); }
+.ex-target { display: inline-block; font-family: var(--f-body-en); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-terra); background: rgba(212, 163, 115, 0.1); padding: 4px 10px; border-radius: 8px; margin-bottom: 12px; }
+.ex-content p { font-size: 14px; color: var(--text-muted); margin-bottom: 12px; }
+.ex-reps { font-family: var(--f-body-en); font-size: 13px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 6px; }
+.ex-reps i { color: var(--c-sage); }
+
+@media(max-width: 600px) {
+  .ex-item { flex-direction: column; gap: 12px; }
+  .ex-num { text-align: left; }
+}
+
+/* ─── TIMELINE PROGRESSION ─── */
+.timeline {
+  position: relative; padding-left: 32px; display: flex; flex-direction: column; gap: var(--sp-4);
+  margin-top: var(--sp-3);
+}
+.timeline::before {
+  content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px;
+  background: linear-gradient(to bottom, var(--c-blush), var(--c-sage)); border-radius: 2px;
+}
+.tl-item { position: relative; display: flex; flex-direction: column; gap: 8px; }
+.tl-dot {
+  position: absolute; left: -32px; top: 4px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--bg-surface); border: 3px solid var(--c-blush); box-shadow: 0 0 0 4px var(--bg-core);
+}
+.tl-item:nth-child(even) .tl-dot { border-color: var(--c-sage); }
+
+.tl-time { font-family: var(--f-body-en); font-size: 12px; font-weight: 600; color: var(--c-terra); text-transform: uppercase; letter-spacing: 0.1em; }
+.tl-title { font-size: 18px; color: var(--text-primary); }
+.tl-desc { font-size: 14px; color: var(--text-muted); }
+
+/* Secret Weapon Box */
+.secret-weapon {
+  margin-top: var(--sp-4); background: var(--c-sage-dim); border: 1px dashed var(--c-sage);
+  border-radius: var(--r-card); padding: var(--sp-3); display: flex; gap: 16px; align-items: flex-start;
+}
+.sw-icon { font-size: 24px; color: var(--c-sage); }
+.sw-content h4 { font-size: 16px; color: var(--text-primary); margin-bottom: 6px; }
+.sw-content p { font-size: 14px; color: var(--text-muted); }
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body data-lang="en">
+
+  <div class="container">
+    
+    <nav class="top-bar">
+      <div class="logo heading">
+        <i class="fa-solid fa-spa" style="color: var(--c-sage);"></i>
+        Aura Wellness
+      </div>
+      <button class="lang-toggle" id="langBtn" aria-label="Toggle Language">
+        <i class="fa-solid fa-language"></i> 
+        <span class="en">සිංහල</span><span class="si">English</span>
+      </button>
+    </nav>
+
+    <header class="hero">
+      <span class="eyebrow"><span class="en">Hormonal Balance & Fitness</span><span class="si">හෝමෝන සමතුලිතතාවය සහ යෝග්‍යතාවය</span></span>
+      <h1 class="heading en">The "Zero-Friction" Blueprint</h1>
+      <h1 class="heading si">ශුන්‍ය-ඝර්ෂණ (Zero-Friction) සැලැස්ම</h1>
+      <p class="body-text en">A gentle, science-backed approach to managing PCOS, balancing hormones, and building consistency without ever leaving your bed.</p>
+      <p class="body-text si">PCOS පාලනය කරමින්, හෝමෝන සමතුලිත කරමින්, ඇඳෙන් පහළට නොබැසම ව්‍යායාම කිරීමේ විද්‍යාත්මක සහ මෘදු ක්‍රමවේදය.</p>
+      
+      <div class="stats-row body-text">
+        <div class="stat-pill"><i class="fa-solid fa-calendar-days"></i> <span class="en">3 Days/Week</span><span class="si">සතියකට දින 3යි</span></div>
+        <div class="stat-pill"><i class="fa-solid fa-stopwatch"></i> <span class="en">10 Minutes</span><span class="si">විනාඩි 10යි</span></div>
+        <div class="stat-pill"><i class="fa-solid fa-bed"></i> <span class="en">Zero Equipment</span><span class="si">උපකරණ අනවශ්‍යයි</span></div>
+      </div>
+    </header>
+
+    <div>
+      <h2 class="section-title heading"><span class="en">1. The Diagnosis & Strategy</span><span class="si">1. ප්‍රධාන ගැටලු සහ උපායමාර්ගය</span></h2>
+      <p class="body-text text-muted" style="margin-bottom: var(--sp-3);">
+        <span class="en">Getting fat quickly even when eating little is not in your head, and it is not laziness. Here is the physiological reality:</span>
+        <span class="si">අඩුවෙන් ආහාර ගත්තද ඉක්මනින් මහත් වීම ඔබේ වරදක් හෝ කම්මැලිකමක් නොවේ. ඊට බලපාන කායික විද්‍යාත්මක සත්‍යය මෙයයි:</span>
+      </p>
+      
+      <div class="bento-grid">
+        <div class="card c-pcos">
+          <div class="c-icon"><i class="fa-solid fa-droplet"></i></div>
+          <h3 class="heading"><span class="en">PCOS & Insulin Resistance</span><span class="si">PCOS සහ ඉන්සියුලින් ප්‍රතිරෝධය</span></h3>
+          <p class="body-text en">Polycystic Ovary Syndrome (PCOS) or uterine issues cause severe Insulin Resistance. Your body overproduces insulin to process even small carbs. High insulin acts as a fat-storage hormone, directing fat to the lower belly.</p>
+          <p class="body-text si">PCOS හෝ ගර්භාෂ ගැටලු නිසා දරුණු ඉන්සියුලින් ප්‍රතිරෝධයක් ඇතිවේ. කුඩා කාබෝහයිඩ්‍රේට් ප්‍රමාණයක් දිරවීමටද සිරුර වැඩිපුර ඉන්සියුලින් නිපදවයි. එය යටි බඩ ප්‍රදේශයේ මේදය තැන්පත් කරන හෝමෝනයක් ලෙස ක්‍රියා කරයි.</p>
+        </div>
+        
+        <div class="card c-cort">
+          <div class="c-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3 class="heading"><span class="en">The Cortisol Trap</span><span class="si">කෝටිසෝල් උගුල (ආතතිය)</span></h3>
+          <p class="body-text en">High-intensity cardio (running, jumping) spikes cortisol (the stress hormone) in women with PCOS. This actually triggers <em>more</em> belly fat storage and worsens menstrual irregularities. Boot camps are the enemy right now.</p>
+          <p class="body-text si">PCOS ඇති කාන්තාවන් අධික වෙහෙසකර ව්‍යායාම (දිවීම, පැනීම) කළ විට කෝටිසෝල් (ආතති හෝමෝනය) ඉහළ යයි. ඉන් යටි බඩේ මේදය තවත් වැඩි වන අතර ආර්තව ගැටලු උග්‍ර වේ.</p>
+        </div>
+
+        <div class="card c-sol b-span-2">
+          <div class="c-icon"><i class="fa-solid fa-leaf"></i></div>
+          <h3 class="heading"><span class="en">The Solution: Low-Impact Resistance</span><span class="si">විසඳුම: අඩු තීව්‍රතාවයකින් යුත් ව්‍යායාම</span></h3>
+          <p class="body-text en">You need low-intensity, low-impact resistance training. Building slight muscle density naturally improves insulin sensitivity, meaning your body will use food for energy instead of storing it as belly fat.</p>
+          <p class="body-text si">ඔබට අවශ්‍ය වන්නේ සිරුරට වෙහෙස අඩු, ප්‍රතිරෝධී ව්‍යායාම (Resistance training) ය. සුළු වශයෙන් හෝ මාංශ පේශි වර්ධනය වීමෙන් ඉන්සියුලින් සංවේදීතාව ඉහළ යයි. එවිට සිරුර ආහාර මේදය ලෙස තැන්පත් කරනවා වෙනුවට ශක්තිය ලෙස දහනය කරයි.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="section-title heading"><span class="en">2. Phase 0.1: The Bed Routine</span><span class="si">2. අදියර 0.1: ඇඳ මත කරන ව්‍යායාම</span></h2>
+      <div class="routine-wrap">
+        <p class="body-text routine-intro">
+          <span class="en">To overcome the barrier of being "lazy to exercise," we remove all friction. No shoes, no yoga mat, no leaving the bed. A firm mattress provides slight instability, which engages your core muscles even more effectively. Do this 3 days a week.</span>
+          <span class="si">ව්‍යායාම කිරීමට ඇති "කම්මැලිකම" මඟහරවා ගැනීමට අප සියලු බාධා ඉවත් කරමු. සපත්තු අනවශ්‍යයි, මැට් අනවශ්‍යයි, ඇඳෙන් බැසීමද අනවශ්‍යයි. මෙට්ටයේ ඇති අස්ථායී බව නිසා ඔබේ උදරයේ මාංශ පේශි වඩාත් හොඳින් ක්‍රියාත්මක වේ. සතියකට දින 3ක් පමණක් මෙය කරන්න.</span>
+        </p>
+
+        <div class="exercise-list">
+          
+          <div class="ex-item">
+            <div class="ex-num">1</div>
+            <div class="ex-content">
+              <h4 class="heading"><span class="en">The Mattress Glute Bridge</span><span class="si">මැට්‍රස් ග්ලූට් බ්‍රිජ් (Glute Bridge)</span></h4>
+              <div class="ex-target"><span class="en">Target: Glutes & Lower Back</span><span class="si">ඉලක්කය: උකුල සහ යටිකය</span></div>
+              <p class="body-text en">Lie on your back with knees bent and feet flat on the mattress. Squeeze your glutes and lift your hips until your body forms a straight line. Hold for 2 seconds, then lower slowly.</p>
+              <p class="body-text si">දණහිස් නමාගෙන උඩුබැලි අතට වැතිරෙන්න. උකුල ප්‍රදේශය තද කරමින් සිරුර සෘජු රේඛාවක් වන සේ ඉහළට ඔසවන්න. තත්පර 2ක් තබාගෙන සෙමින් පහළට ගෙන එන්න.</p>
+              <div class="ex-reps"><i class="fa-solid fa-rotate-right"></i> <span class="en">2 sets of 10-12 slow reps</span><span class="si">සෙමින් වාර 10-12 බැගින් වට 2ක්</span></div>
+            </div>
+          </div>
+
+          <div class="ex-item">
+            <div class="ex-num">2</div>
+            <div class="ex-content">
+              <h4 class="heading"><span class="en">Clamshells (Side-Lying)</span><span class="si">ක්ලැම්ෂෙල්ස් (Clamshells)</span></h4>
+              <div class="ex-target"><span class="en">Target: Outer Thighs & Pelvic Health</span><span class="si">ඉලක්කය: කලවා සහ උකුල</span></div>
+              <p class="body-text en">Lie on your side with knees bent at a 45-degree angle. Keeping your feet together, open your top knee like a clamshell opening, then close it slowly.</p>
+              <p class="body-text si">දණහිස් අංශක 45කට නමාගෙන ඇලයට වැතිරෙන්න. පාද දෙක එකට තබාගෙන, උඩින් ඇති දණහිස බෙල්ලෙකුගේ කටුවක් සේ ඉහළට විවෘත කර සෙමින් වසන්න.</p>
+              <div class="ex-reps"><i class="fa-solid fa-rotate-right"></i> <span class="en">2 sets of 10 reps per leg</span><span class="si">එක් කකුලකට වාර 10 බැගින් වට 2ක්</span></div>
+            </div>
+          </div>
+
+          <div class="ex-item">
+            <div class="ex-num">3</div>
+            <div class="ex-content">
+              <h4 class="heading"><span class="en">Lying Single-Leg Tucks</span><span class="si">ලයින්ග් සිංගල්-ලෙග් ටක්ස් (Single-Leg Tucks)</span></h4>
+              <div class="ex-target"><span class="en">Target: Lower Belly Fat & Deep Core</span><span class="si">ඉලක්කය: යටි බඩේ මේදය දහනය</span></div>
+              <p class="body-text en">Lie flat on your back. Pull one knee into your chest, extend it straight out without letting the heel touch the bed, and bring it back. (Lifting both legs on a mattress hurts the lower back—stick to one leg).</p>
+              <p class="body-text si">උඩුබැලි අතට වැතිරෙන්න. එක් දණහිසක් පපුව දෙසට නමාගෙන, නැවත විලුඹ ඇඳේ නොගෑවෙන සේ කකුල දිග හරින්න. (කකුල් දෙකම එකවර එසවීමෙන් කොන්දට හානි විය හැක).</p>
+              <div class="ex-reps"><i class="fa-solid fa-rotate-right"></i> <span class="en">2 sets of 8 reps per leg</span><span class="si">එක් කකුලකට වාර 8 බැගින් වට 2ක්</span></div>
+            </div>
+          </div>
+
+          <div class="ex-item">
+            <div class="ex-num">4</div>
+            <div class="ex-content">
+              <h4 class="heading"><span class="en">The Pillow Squeeze</span><span class="si">කොට්ටය මිරිකීම (Pillow Squeeze)</span></h4>
+              <div class="ex-target"><span class="en">Target: Inner Thighs & Pelvic Floor</span><span class="si">ඉලක්කය: කලවා ඇතුළත සහ ශ්‍රෝණිය</span></div>
+              <p class="body-text en">Lie on your back with knees bent. Place a thick, folded pillow between your knees. Squeeze the pillow as hard as you can using your inner thighs for 5 seconds, then release.</p>
+              <p class="body-text si">දණහිස් නමාගෙන උඩුබැලි අතට වැතිරෙන්න. ඝන කොට්ටයක් දණහිස් අතර තබා, කලවා වලින් කොට්ටය උපරිම වෙර යොදා තත්පර 5ක් මිරිකාගෙන සිට අත්හරින්න.</p>
+              <div class="ex-reps"><i class="fa-solid fa-rotate-right"></i> <span class="en">2 sets of 8 squeezes</span><span class="si">මිරිකීම් 8 බැගින් වට 2ක්</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="section-title heading"><span class="en">3. Progression Strategy</span><span class="si">3. ප්‍රගති සැලැස්ම (2026 ජූනි – 2027 ජනවාරි)</span></h2>
+      <div class="timeline">
+        
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time"><span class="en">Month 1</span><span class="si">මාසය 1</span></div>
+          <h4 class="heading tl-title"><span class="en">Consistency over Intensity</span><span class="si">පුරුද්දක් කරගැනීම</span></h4>
+          <p class="body-text tl-desc en">Do not track your weight. The only goal is to perform this 10-minute bed routine 3 times a week. We are just building the habit.</p>
+          <p class="body-text tl-desc si">බර කිරන්න එපා. එකම අරමුණ සතියකට දින 3ක් මෙම විනාඩි 10යේ ව්‍යායාමය කිරීම පමණි. අප උත්සාහ කරන්නේ පුරුද්දක් ගොඩනැගීමටයි.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time"><span class="en">Month 2 & 3</span><span class="si">මාසය 2 සහ 3</span></div>
+          <h4 class="heading tl-title"><span class="en">Adding Resistance</span><span class="si">ප්‍රතිරෝධය වැඩි කිරීම</span></h4>
+          <p class="body-text tl-desc en">Once the bed routine becomes easy, we move off the bed to the floor (using a thick towel) and introduce light resistance bands to the clamshells and glute bridges.</p>
+          <p class="body-text tl-desc si">ඇඳ මත කරන ව්‍යායාම පහසු වූ පසු, ඝන තුවායක් මත බිමට වී ව්‍යායාම කිරීම අරඹමු. Clamshells සහ Glute bridges සඳහා සැහැල්ලු Resistance bands හඳුන්වා දෙමු.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time"><span class="en">Month 4 to 6</span><span class="si">මාසය 4 සිට 6 දක්වා</span></div>
+          <h4 class="heading tl-title"><span class="en">The Burn</span><span class="si">මේදය දහනය</span></h4>
+          <p class="body-text tl-desc en">We introduce standing, low-impact movements (like bodyweight squats and reverse lunges holding a chair) to burn maximum calories and shape the legs and core.</p>
+          <p class="body-text tl-desc si">කැලරි දහනය උපරිම කිරීමට සහ සිරුර හැඩ කිරීමට, සිටගෙන කරන නමුත් සිරුරට වෙහෙස අඩු ව්‍යායාම (Squats සහ පුටුවක් අල්ලාගෙන කරන Lunges) ආරම්භ කරමු.</p>
+        </div>
+
+      </div>
+
+      <div class="secret-weapon">
+        <div class="sw-icon"><i class="fa-solid fa-shoe-prints"></i></div>
+        <div class="sw-content">
+          <h4 class="heading"><span class="en">The Daily "Secret Weapon"</span><span class="si">දෛනික "රහස් ආයුධය"</span></h4>
+          <p class="body-text en">Take a <strong>10-minute walk immediately after lunch or dinner</strong>. Just 10 minutes of walking after a meal helps stabilize blood sugar without spiking stress hormones, which is highly effective for reducing PCOS belly fat.</p>
+          <p class="body-text si"><strong>දිවා හෝ රාත්‍රී ආහාරයෙන් පසු වහාම විනාඩි 10ක් ඇවිදින්න</strong>. කෑමෙන් පසු විනාඩි 10ක් ඇවිදීමෙන් ආතති හෝමෝන වැඩි නොකර රුධිරයේ සීනි මට්ටම පාලනය වේ. මෙය PCOS නිසා ඇතිවන යටි බඩේ මේදය දහනයට අතිශයින්ම ඵලදායී වේ.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    /* Bilingual Toggle Logic */
+    const langBtn = document.getElementById('langBtn');
+    langBtn.addEventListener('click', () => {
+      const currentLang = document.body.getAttribute('data-lang');
+      const newLang = currentLang === 'en' ? 'si' : 'en';
+      document.body.setAttribute('data-lang', newLang);
+    });
+  </script>
+</body>
+</html>
