@@ -1,382 +1,2447 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Aura Wellness | The Zero-Friction Blueprint</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Noto+Sans+Sinhala:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kavindya's Wellness Journey — Zero Friction Fitness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* ============================================
+       DESIGN TOKENS & CSS CUSTOM PROPERTIES
+    ============================================ */
+    :root {
+      --clr-rose-50:      #FFF0F5;
+      --clr-rose-100:     #FFD6E7;
+      --clr-rose-200:     #FFB3D1;
+      --clr-rose-400:     #F472A8;
+      --clr-rose-500:     #EC4899;
+      --clr-rose-600:     #DB2777;
+      --clr-lavender-50:  #F5F0FF;
+      --clr-lavender-100: #EDE0FF;
+      --clr-lavender-200: #D8BBFF;
+      --clr-lavender-400: #A855F7;
+      --clr-lavender-500: #9333EA;
+      --clr-plum-700:     #7C3AED;
+      --clr-plum-900:     #4C1D95;
+      --clr-cream:        #FFF8F0;
+      --clr-warm-50:      #FFFBF5;
+      --clr-neutral-100:  #F5F5F5;
+      --clr-neutral-300:  #D4D4D4;
+      --clr-neutral-500:  #737373;
+      --clr-neutral-700:  #404040;
+      --clr-neutral-900:  #171717;
+      --clr-white:        #FFFFFF;
 
-<style>
-/* ─── FOUNDATION & 8PT GRID SYSTEM ─── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      --gradient-hero:    linear-gradient(135deg, #FFF0F5 0%, #F5F0FF 40%, #FFF8F0 100%);
+      --gradient-card:    linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,240,245,0.6));
+      --gradient-plum:    linear-gradient(135deg, #9333EA, #DB2777);
+      --gradient-soft:    linear-gradient(135deg, #F9A8D4, #C084FC);
+      --gradient-green:   linear-gradient(135deg, #86EFAC, #34D399);
+      --gradient-amber:   linear-gradient(135deg, #FCD34D, #FB923C);
 
-:root {
-  /* Soft Wellness Palette */
-  --bg-core:      #FAF7F2; /* Warm Cream */
-  --bg-surface:   #FFFFFF;
-  --bg-alt:       #F2EBE5; /* Soft Sand */
-  
-  --border-sub:   #E8E0D9;
-  --border-foc:   #D4A373; 
-  
-  --text-primary: #3E3636; /* Deep muted plum/charcoal */
-  --text-muted:   #7A7070; 
-  
-  /* Thematic Accents */
-  --c-blush:      #E5B5B3; /* Soft Rose/Blush */
-  --c-blush-dim:  rgba(229, 181, 179, 0.15);
-  --c-sage:       #A3B19B; /* Calming Green */
-  --c-sage-dim:   rgba(163, 177, 155, 0.15);
-  --c-terra:      #D4A373; /* Warm Earth */
+      --shadow-sm:   0 2px 8px rgba(147,51,234,0.08);
+      --shadow-md:   0 8px 32px rgba(147,51,234,0.12);
+      --shadow-lg:   0 20px 60px rgba(147,51,234,0.18);
+      --shadow-card: 0 4px 24px rgba(219,39,119,0.10);
 
-  /* Spacing */
-  --sp-1: 8px;  --sp-2: 16px; --sp-3: 24px; --sp-4: 32px; --sp-6: 48px; --sp-8: 64px;
-  
-  /* Radii & Motion */
-  --r-btn: 100px;
-  --r-card: 24px;
-  --trans-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --radius-sm:  8px;
+      --radius-md:  16px;
+      --radius-lg:  24px;
+      --radius-xl:  32px;
+      --radius-full: 9999px;
 
-  /* Fonts */
-  --f-heading-en: 'Playfair Display', serif;
-  --f-heading-si: 'Abhaya Libre', serif;
-  --f-body-en:    'Inter', sans-serif;
-  --f-body-si:    'Noto Sans Sinhala', sans-serif;
-}
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', -apple-system, sans-serif;
 
-html { scroll-behavior: smooth; }
-body {
-  background-color: var(--bg-core);
-  color: var(--text-primary);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  background-image: 
-    radial-gradient(circle at 10% 0%, rgba(229, 181, 179, 0.2) 0%, transparent 40%),
-    radial-gradient(circle at 90% 100%, rgba(163, 177, 155, 0.15) 0%, transparent 40%);
-  padding-bottom: var(--sp-8);
-}
+      --space-1:  4px;
+      --space-2:  8px;
+      --space-3:  12px;
+      --space-4:  16px;
+      --space-5:  20px;
+      --space-6:  24px;
+      --space-8:  32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-20: 80px;
+      --space-24: 96px;
 
-/* ─── BILINGUAL STATE MANAGEMENT ─── */
-[data-lang="si"] .en { display: none !important; }
-[data-lang="en"] .si { display: none !important; }
+      --transition-fast:   150ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-base:   300ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow:   500ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-spring: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
 
-body[data-lang="si"] .heading { font-family: var(--f-heading-si); letter-spacing: 0.02em; }
-body[data-lang="en"] .heading { font-family: var(--f-heading-en); letter-spacing: -0.01em; }
+    /* ============================================
+       RESET & BASE STYLES
+    ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-body[data-lang="si"] .body-text { font-family: var(--f-body-si); line-height: 1.8; }
-body[data-lang="en"] .body-text { font-family: var(--f-body-en); line-height: 1.6; }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-/* ─── LAYOUT ─── */
-.container {
-  width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 32px);
-  display: flex; flex-direction: column; gap: var(--sp-6);
-}
+    body {
+      font-family: var(--font-body);
+      background: var(--clr-warm-50);
+      color: var(--clr-neutral-900);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-/* Navigation */
-.top-bar {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: var(--sp-3) 0; border-bottom: 1px solid var(--border-sub);
-}
-.logo { font-size: 22px; font-weight: 600; color: var(--c-terra); display: flex; align-items: center; gap: 8px; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
 
-.lang-toggle {
-  display: inline-flex; align-items: center; gap: var(--sp-1);
-  background: var(--bg-surface); border: 1px solid var(--border-sub);
-  color: var(--text-primary); padding: 8px 20px; border-radius: var(--r-btn);
-  font-family: var(--f-body-en); font-size: 13px; font-weight: 500;
-  cursor: pointer; transition: all var(--trans-base); box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-}
-.lang-toggle:hover { border-color: var(--c-terra); color: var(--c-terra); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(212, 163, 115, 0.1); }
-.lang-toggle:active { transform: scale(0.96); }
+    /* ============================================
+       SCROLLBAR STYLING
+    ============================================ */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--clr-rose-50); }
+    ::-webkit-scrollbar-thumb {
+      background: var(--gradient-soft);
+      border-radius: var(--radius-full);
+    }
 
-/* ─── HERO ─── */
-.hero { 
-  text-align: center; padding: clamp(32px, 6vw, 64px) 0 clamp(16px, 3vw, 32px); 
-  max-width: 800px; margin: 0 auto; animation: fadeUp 0.8s ease both;
-}
-.eyebrow {
-  display: inline-flex; font-family: var(--f-body-en); font-size: 12px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.15em; color: var(--c-sage);
-  margin-bottom: var(--sp-2); padding: 6px 16px; background: var(--c-sage-dim); border-radius: var(--r-btn);
-}
-.hero h1 { font-size: clamp(32px, 6vw, 52px); margin-bottom: var(--sp-3); font-style: italic; font-weight: 500; color: var(--text-primary); }
-.hero p { color: var(--text-muted); font-size: clamp(15px, 3vw, 17px); margin-bottom: var(--sp-4); }
+    /* ============================================
+       UTILITY CLASSES
+    ============================================ */
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
 
-.stats-row {
-  display: flex; justify-content: center; gap: var(--sp-2); flex-wrap: wrap;
-}
-.stat-pill {
-  background: var(--bg-surface); border: 1px solid var(--border-sub);
-  padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; gap: 10px;
-  font-size: 14px; font-weight: 500; color: var(--text-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-}
-.stat-pill i { color: var(--c-blush); font-size: 16px; }
+    .section {
+      padding: var(--space-20) 0;
+    }
 
-/* ─── DIAGNOSIS BENTO GRID ─── */
-.section-title { font-size: 28px; margin-bottom: var(--sp-3); border-bottom: 1px solid var(--border-sub); padding-bottom: 12px; color: var(--text-primary); }
+    .section--tight {
+      padding: var(--space-12) 0;
+    }
 
-.bento-grid { display: grid; grid-template-columns: 1fr; gap: var(--sp-3); animation: fadeUp 0.8s ease 0.2s both; }
-@media(min-width: 768px) { .bento-grid { grid-template-columns: 1fr 1fr; } .b-span-2 { grid-column: 1 / -1; } }
+    .text-gradient {
+      background: var(--gradient-plum);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-.card {
-  background: var(--bg-surface); border: 1px solid var(--border-sub);
-  border-radius: var(--r-card); padding: clamp(24px, 4vw, 32px);
-  transition: all var(--trans-base); display: flex; flex-direction: column; position: relative; overflow: hidden;
-}
-.card:hover { border-color: var(--c-blush); box-shadow: 0 12px 32px -8px rgba(229, 181, 179, 0.2); transform: translateY(-2px); }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
 
-.c-icon { 
-  width: 48px; height: 48px; border-radius: 16px; background: var(--bg-alt);
-  display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--c-terra); margin-bottom: var(--sp-3);
-}
-.card h3 { font-size: 20px; margin-bottom: 12px; color: var(--text-primary); }
-.card p { color: var(--text-muted); font-size: 15px; }
+    .badge--rose {
+      background: var(--clr-rose-100);
+      color: var(--clr-rose-600);
+    }
 
-/* Thematic Top Borders */
-.card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; }
-.card.c-pcos::before { background: var(--c-blush); }
-.card.c-cort::before { background: var(--c-terra); }
-.card.c-sol::before { background: var(--c-sage); }
+    .badge--lavender {
+      background: var(--clr-lavender-100);
+      color: var(--clr-lavender-500);
+    }
 
-/* ─── BED ROUTINE ─── */
-.routine-wrap {
-  background: var(--bg-surface); border: 1px solid var(--border-sub);
-  border-radius: var(--r-card); padding: clamp(24px, 4vw, 40px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.02);
-}
-.routine-intro { margin-bottom: var(--sp-4); }
+    .badge--green {
+      background: #DCFCE7;
+      color: #16A34A;
+    }
 
-.exercise-list { display: flex; flex-direction: column; gap: var(--sp-2); }
-.ex-item {
-  display: flex; gap: var(--sp-3); align-items: flex-start; padding: var(--sp-3);
-  background: var(--bg-alt); border: 1px solid transparent; border-radius: 20px;
-  transition: all var(--trans-base);
-}
-.ex-item:hover { background: var(--bg-surface); border-color: var(--c-sage); box-shadow: 0 8px 20px rgba(163, 177, 155, 0.15); transform: translateX(4px); }
+    /* ============================================
+       ANIMATION CLASSES (JS-driven)
+    ============================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity var(--transition-slow), transform var(--transition-slow);
+    }
 
-.ex-num {
-  font-family: var(--f-heading-en); font-size: 32px; font-weight: 700; color: var(--c-sage);
-  width: 40px; text-align: center; flex-shrink: 0; line-height: 1;
-}
-.ex-content { flex: 1; }
-.ex-content h4 { font-size: 18px; margin-bottom: 8px; color: var(--text-primary); }
-.ex-target { display: inline-block; font-family: var(--f-body-en); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-terra); background: rgba(212, 163, 115, 0.1); padding: 4px 10px; border-radius: 8px; margin-bottom: 12px; }
-.ex-content p { font-size: 14px; color: var(--text-muted); margin-bottom: 12px; }
-.ex-reps { font-family: var(--f-body-en); font-size: 13px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 6px; }
-.ex-reps i { color: var(--c-sage); }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-@media(max-width: 600px) {
-  .ex-item { flex-direction: column; gap: 12px; }
-  .ex-num { text-align: left; }
-}
+    .reveal--left {
+      opacity: 0;
+      transform: translateX(-32px);
+      transition: opacity var(--transition-slow), transform var(--transition-slow);
+    }
 
-/* ─── TIMELINE PROGRESSION ─── */
-.timeline {
-  position: relative; padding-left: 32px; display: flex; flex-direction: column; gap: var(--sp-4);
-  margin-top: var(--sp-3);
-}
-.timeline::before {
-  content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px;
-  background: linear-gradient(to bottom, var(--c-blush), var(--c-sage)); border-radius: 2px;
-}
-.tl-item { position: relative; display: flex; flex-direction: column; gap: 8px; }
-.tl-dot {
-  position: absolute; left: -32px; top: 4px; width: 14px; height: 14px; border-radius: 50%;
-  background: var(--bg-surface); border: 3px solid var(--c-blush); box-shadow: 0 0 0 4px var(--bg-core);
-}
-.tl-item:nth-child(even) .tl-dot { border-color: var(--c-sage); }
+    .reveal--left.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
 
-.tl-time { font-family: var(--f-body-en); font-size: 12px; font-weight: 600; color: var(--c-terra); text-transform: uppercase; letter-spacing: 0.1em; }
-.tl-title { font-size: 18px; color: var(--text-primary); }
-.tl-desc { font-size: 14px; color: var(--text-muted); }
+    .reveal--scale {
+      opacity: 0;
+      transform: scale(0.94);
+      transition: opacity var(--transition-slow), transform var(--transition-spring);
+    }
 
-/* Secret Weapon Box */
-.secret-weapon {
-  margin-top: var(--sp-4); background: var(--c-sage-dim); border: 1px dashed var(--c-sage);
-  border-radius: var(--r-card); padding: var(--sp-3); display: flex; gap: 16px; align-items: flex-start;
-}
-.sw-icon { font-size: 24px; color: var(--c-sage); }
-.sw-content h4 { font-size: 16px; color: var(--text-primary); margin-bottom: 6px; }
-.sw-content p { font-size: 14px; color: var(--text-muted); }
+    .reveal--scale.is-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
 
-@keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-</style>
+    .stagger-1 { transition-delay: 100ms; }
+    .stagger-2 { transition-delay: 200ms; }
+    .stagger-3 { transition-delay: 300ms; }
+    .stagger-4 { transition-delay: 400ms; }
+    .stagger-5 { transition-delay: 500ms; }
+
+    /* ============================================
+       NAVIGATION
+    ============================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: var(--space-4) 0;
+      transition: background var(--transition-base), box-shadow var(--transition-base),
+                  backdrop-filter var(--transition-base);
+    }
+
+    .nav.scrolled {
+      background: rgba(255, 248, 240, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 rgba(219,39,119,0.08), var(--shadow-sm);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav__brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .nav__logo {
+      width: 36px;
+      height: 36px;
+      background: var(--gradient-plum);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(147,51,234,0.3);
+    }
+
+    .nav__brand-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.1rem;
+      background: var(--gradient-plum);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+      list-style: none;
+    }
+
+    .nav__link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--clr-neutral-700);
+      transition: color var(--transition-fast);
+      position: relative;
+    }
+
+    .nav__link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-plum);
+      border-radius: var(--radius-full);
+      transition: width var(--transition-base);
+    }
+
+    .nav__link:hover { color: var(--clr-rose-600); }
+    .nav__link:hover::after { width: 100%; }
+
+    .nav__cta {
+      padding: var(--space-2) var(--space-5);
+      background: var(--gradient-plum);
+      color: var(--clr-white) !important;
+      border-radius: var(--radius-full);
+      font-size: 0.875rem;
+      font-weight: 600;
+      box-shadow: 0 4px 16px rgba(147,51,234,0.35);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast) !important;
+    }
+
+    .nav__cta::after { display: none !important; }
+
+    .nav__cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(147,51,234,0.45);
+    }
+
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: var(--space-2);
+      border: none;
+      background: none;
+    }
+
+    .nav__hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--clr-lavender-500);
+      border-radius: 2px;
+      transition: transform var(--transition-base), opacity var(--transition-base);
+    }
+
+    /* ============================================
+       HERO SECTION
+    ============================================ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--gradient-hero);
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .hero__bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      animation: floatOrb 8s ease-in-out infinite;
+    }
+
+    .hero__bg-orb--1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(244,114,168,0.18) 0%, transparent 70%);
+      top: -100px;
+      right: -150px;
+      animation-delay: 0s;
+    }
+
+    .hero__bg-orb--2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%);
+      bottom: 50px;
+      left: -80px;
+      animation-delay: -4s;
+    }
+
+    .hero__bg-orb--3 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(251,146,60,0.10) 0%, transparent 70%);
+      top: 40%;
+      left: 40%;
+      animation-delay: -2s;
+    }
+
+    @keyframes floatOrb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%       { transform: translate(20px, -30px) scale(1.05); }
+      66%       { transform: translate(-15px, 15px) scale(0.97); }
+    }
+
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__eyebrow {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+    }
+
+    .hero__pulse {
+      width: 10px;
+      height: 10px;
+      background: var(--clr-rose-500);
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .hero__pulse::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: var(--clr-rose-500);
+      opacity: 0.3;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50%       { transform: scale(1.6); opacity: 0; }
+    }
+
+    .hero__eyebrow-text {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clr-rose-600);
+    }
+
+    .hero__heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.12;
+      color: var(--clr-neutral-900);
+      margin-bottom: var(--space-5);
+    }
+
+    .hero__heading em {
+      font-style: italic;
+      background: var(--gradient-plum);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero__description {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--clr-neutral-500);
+      max-width: 480px;
+      margin-bottom: var(--space-8);
+    }
+
+    .hero__description strong {
+      color: var(--clr-neutral-700);
+      font-weight: 600;
+    }
+
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-6);
+      border-radius: var(--radius-full);
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition-base);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn--primary {
+      background: var(--gradient-plum);
+      color: var(--clr-white);
+      box-shadow: 0 6px 24px rgba(147,51,234,0.4);
+    }
+
+    .btn--primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(147,51,234,0.5);
+    }
+
+    .btn--primary:active { transform: translateY(-1px); }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--clr-lavender-500);
+      border: 2px solid var(--clr-lavender-200);
+    }
+
+    .btn--ghost:hover {
+      background: var(--clr-lavender-50);
+      border-color: var(--clr-lavender-400);
+      transform: translateY(-2px);
+    }
+
+    .hero__stats {
+      display: flex;
+      gap: var(--space-8);
+      margin-top: var(--space-10);
+      padding-top: var(--space-8);
+      border-top: 1px solid rgba(219,39,119,0.12);
+    }
+
+    .hero__stat-value {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      background: var(--gradient-plum);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero__stat-label {
+      font-size: 0.8rem;
+      color: var(--clr-neutral-500);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    /* Hero Visual Card */
+    .hero__visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero__card-stack {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .hero__main-card {
+      background: var(--clr-white);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(219,39,119,0.08);
+      position: relative;
+      z-index: 2;
+      animation: heroCardFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes heroCardFloat {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    .hero__card-emoji {
+      font-size: 3rem;
+      margin-bottom: var(--space-4);
+      display: block;
+    }
+
+    .hero__card-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--clr-neutral-900);
+      margin-bottom: var(--space-2);
+    }
+
+    .hero__card-sub {
+      font-size: 0.875rem;
+      color: var(--clr-neutral-500);
+      margin-bottom: var(--space-5);
+    }
+
+    .hero__progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+
+    .hero__progress-label span:first-child { color: var(--clr-neutral-700); }
+    .hero__progress-label span:last-child  { color: var(--clr-lavender-500); }
+
+    .progress-bar {
+      height: 8px;
+      background: var(--clr-lavender-100);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .progress-bar__fill {
+      height: 100%;
+      background: var(--gradient-plum);
+      border-radius: var(--radius-full);
+      width: 0%;
+      transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s;
+    }
+
+    .hero__routine-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-top: var(--space-5);
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: 4px var(--space-3);
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .chip--rose     { background: var(--clr-rose-100);     color: var(--clr-rose-600); }
+    .chip--lavender { background: var(--clr-lavender-100); color: var(--clr-lavender-500); }
+    .chip--green    { background: #DCFCE7;                 color: #16A34A; }
+    .chip--amber    { background: #FEF3C7;                 color: #D97706; }
+
+    .hero__floating-tag {
+      position: absolute;
+      background: var(--clr-white);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(219,39,119,0.08);
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      animation: tagFloat 4s ease-in-out infinite;
+      z-index: 3;
+    }
+
+    .hero__floating-tag--1 {
+      top: -20px;
+      right: -20px;
+      color: var(--clr-rose-600);
+      animation-delay: -1s;
+    }
+
+    .hero__floating-tag--2 {
+      bottom: 20px;
+      left: -30px;
+      color: var(--clr-lavender-500);
+      animation-delay: -2s;
+    }
+
+    @keyframes tagFloat {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50%       { transform: translateY(-8px) rotate(1deg); }
+    }
+
+    /* ============================================
+       DIAGNOSIS SECTION
+    ============================================ */
+    .diagnosis { background: var(--clr-white); }
+
+    .section__header {
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto var(--space-12);
+    }
+
+    .section__eyebrow {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clr-rose-500);
+      margin-bottom: var(--space-3);
+    }
+
+    .section__heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--clr-neutral-900);
+      margin-bottom: var(--space-4);
+    }
+
+    .section__sub {
+      font-size: 1rem;
+      color: var(--clr-neutral-500);
+      line-height: 1.7;
+    }
+
+    /* Validation Banner */
+    .validation-banner {
+      background: linear-gradient(135deg, var(--clr-rose-50), var(--clr-lavender-50));
+      border: 1px solid var(--clr-rose-100);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6) var(--space-8);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-5);
+      margin-bottom: var(--space-10);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .validation-banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gradient-plum);
+      border-radius: var(--radius-full);
+    }
+
+    .validation-banner__icon {
+      font-size: 2.2rem;
+      flex-shrink: 0;
+    }
+
+    .validation-banner__text h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--clr-neutral-900);
+      margin-bottom: var(--space-2);
+    }
+
+    .validation-banner__text p {
+      font-size: 0.9375rem;
+      color: var(--clr-neutral-600, #525252);
+      line-height: 1.7;
+    }
+
+    .validation-banner__text strong {
+      color: var(--clr-rose-600);
+    }
+
+    /* Diagnosis Bento Grid */
+    .diagnosis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+    }
+
+    .diag-card {
+      background: var(--gradient-card);
+      border: 1px solid rgba(219,39,119,0.08);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+      cursor: default;
+    }
+
+    .diag-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .diag-card__icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: var(--space-4);
+    }
+
+    .diag-card__icon-wrap--rose     { background: var(--clr-rose-100); }
+    .diag-card__icon-wrap--lavender { background: var(--clr-lavender-100); }
+    .diag-card__icon-wrap--green    { background: #DCFCE7; }
+
+    .diag-card__title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--clr-neutral-900);
+      margin-bottom: var(--space-3);
+    }
+
+    .diag-card__body {
+      font-size: 0.875rem;
+      color: var(--clr-neutral-500);
+      line-height: 1.7;
+    }
+
+    .diag-card__body strong {
+      color: var(--clr-neutral-700);
+      font-weight: 600;
+    }
+
+    .diag-card--full {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--clr-lavender-50), var(--clr-rose-50));
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+    }
+
+    .diag-card--full .diag-card__icon-wrap {
+      width: 64px;
+      height: 64px;
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .diag-card--full .diag-card__body {
+      font-size: 0.9375rem;
+    }
+
+    /* ============================================
+       EXERCISES SECTION
+    ============================================ */
+    .exercises {
+      background: var(--gradient-hero);
+    }
+
+    .exercises-intro {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: var(--space-8);
+      margin-bottom: var(--space-12);
+      padding: var(--space-8);
+      background: var(--clr-white);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(219,39,119,0.06);
+    }
+
+    .exercises-intro__text h2 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--clr-neutral-900);
+      margin-bottom: var(--space-3);
+    }
+
+    .exercises-intro__text p {
+      font-size: 0.9375rem;
+      color: var(--clr-neutral-500);
+      line-height: 1.7;
+    }
+
+    .exercises-intro__meta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .meta-pill {
+      padding: var(--space-3) var(--space-5);
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+
+    .meta-pill__value {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .meta-pill__label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-top: 3px;
+    }
+
+    .meta-pill--rose {
+      background: var(--clr-rose-50);
+    }
+    .meta-pill--rose .meta-pill__value { color: var(--clr-rose-600); }
+    .meta-pill--rose .meta-pill__label { color: var(--clr-rose-400); }
+
+    .meta-pill--lavender {
+      background: var(--clr-lavender-50);
+    }
+    .meta-pill--lavender .meta-pill__value { color: var(--clr-lavender-500); }
+    .meta-pill--lavender .meta-pill__label { color: var(--clr-lavender-400); }
+
+    /* Exercise Cards Grid */
+    .exercise-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+    }
+
+    .exercise-card {
+      background: var(--clr-white);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(219,39,119,0.06);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+      cursor: default;
+    }
+
+    .exercise-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .exercise-card__header {
+      padding: var(--space-6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .exercise-card__header--rose     { background: linear-gradient(135deg, #FFF0F5, #FFD6E7); }
+    .exercise-card__header--lavender { background: linear-gradient(135deg, #F5F0FF, #EDE0FF); }
+    .exercise-card__header--green    { background: linear-gradient(135deg, #F0FDF4, #DCFCE7); }
+    .exercise-card__header--amber    { background: linear-gradient(135deg, #FFFBEB, #FEF3C7); }
+
+    .exercise-card__number {
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-5);
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 700;
+      opacity: 0.08;
+      color: var(--clr-neutral-900);
+      line-height: 1;
+    }
+
+    .exercise-card__emoji {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: var(--space-3);
+    }
+
+    .exercise-card__name {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--clr-neutral-900);
+      margin-bottom: var(--space-1);
+    }
+
+    .exercise-card__focus {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--clr-neutral-500);
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+    }
+
+    .exercise-card__body {
+      padding: var(--space-5) var(--space-6) var(--space-6);
+    }
+
+    .exercise-card__how {
+      font-size: 0.875rem;
+      color: var(--clr-neutral-500);
+      line-height: 1.75;
+      margin-bottom: var(--space-5);
+    }
+
+    .exercise-card__target {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md);
+      background: var(--clr-neutral-100);
+    }
+
+    .exercise-card__target-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--clr-neutral-500);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .exercise-card__target-value {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--clr-neutral-900);
+    }
+
+    .exercise-card__steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      margin-bottom: var(--space-5);
+    }
+
+    .exercise-card__step {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      font-size: 0.875rem;
+      color: var(--clr-neutral-500);
+      line-height: 1.65;
+    }
+
+    .step-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-dot--rose     { background: var(--clr-rose-100);     color: var(--clr-rose-600); }
+    .step-dot--lavender { background: var(--clr-lavender-100); color: var(--clr-lavender-500); }
+    .step-dot--green    { background: #DCFCE7;                 color: #16A34A; }
+    .step-dot--amber    { background: #FEF3C7;                 color: #D97706; }
+
+    /* ============================================
+       SECRET WEAPON SECTION
+    ============================================ */
+    .secret-weapon {
+      background: var(--clr-white);
+    }
+
+    .secret-card {
+      background: linear-gradient(135deg, #FFF0F5 0%, #F5F0FF 50%, #FFFBEB 100%);
+      border-radius: var(--radius-xl);
+      padding: var(--space-12) var(--space-10);
+      border: 1px solid rgba(219,39,119,0.1);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12);
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .secret-card::after {
+      content: '🚶‍♀️';
+      position: absolute;
+      right: var(--space-8);
+      bottom: -20px;
+      font-size: 8rem;
+      opacity: 0.06;
+      pointer-events: none;
+    }
+
+    .secret-card__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      background: var(--clr-rose-100);
+      color: var(--clr-rose-600);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-4);
+    }
+
+    .secret-card__heading {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--clr-neutral-900);
+      line-height: 1.2;
+      margin-bottom: var(--space-4);
+    }
+
+    .secret-card__body {
+      font-size: 0.9375rem;
+      color: var(--clr-neutral-500);
+      line-height: 1.75;
+      margin-bottom: var(--space-6);
+    }
+
+    .secret-card__body strong {
+      color: var(--clr-rose-600);
+      font-weight: 600;
+    }
+
+    .secret-benefits {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .secret-benefit {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      background: var(--clr-white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .secret-benefit__icon {
+      font-size: 1.2rem;
+    }
+
+    .secret-benefit__text {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--clr-neutral-700);
+    }
+
+    .secret-timer {
+      background: var(--clr-white);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .secret-timer__circle {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto var(--space-5);
+      position: relative;
+    }
+
+    .secret-timer__svg {
+      transform: rotate(-90deg);
+      width: 100%;
+      height: 100%;
+    }
+
+    .secret-timer__track {
+      fill: none;
+      stroke: var(--clr-rose-100);
+      stroke-width: 10;
+    }
+
+    .secret-timer__fill {
+      fill: none;
+      stroke: url(#timerGradient);
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-dasharray: 408;
+      stroke-dashoffset: 408;
+      transition: stroke-dashoffset 2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s;
+    }
+
+    .secret-timer__inner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .secret-timer__value {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 700;
+      background: var(--gradient-plum);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .secret-timer__unit {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--clr-neutral-500);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .secret-timer__label {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--clr-neutral-900);
+      margin-bottom: var(--space-2);
+    }
+
+    .secret-timer__sub {
+      font-size: 0.82rem;
+      color: var(--clr-neutral-500);
+    }
+
+    .secret-timer__meals {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+    }
+
+    .meal-tag {
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: var(--space-1) var(--space-3);
+      background: var(--clr-rose-50);
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--clr-rose-600);
+    }
+
+    /* ============================================
+       PROGRESSION TIMELINE
+    ============================================ */
+    .timeline { background: var(--gradient-hero); }
+
+    .timeline-track {
+      position: relative;
+      padding: var(--space-8) 0;
+    }
+
+    .timeline-track::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      background: linear-gradient(to bottom, var(--clr-rose-200), var(--clr-lavender-200), var(--clr-lavender-400));
+      border-radius: var(--radius-full);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: var(--space-8);
+      align-items: center;
+      margin-bottom: var(--space-8);
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-item__card {
+      background: var(--clr-white);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(219,39,119,0.06);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .timeline-item__card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .timeline-item--left .timeline-item__card {
+      grid-column: 1;
+      grid-row: 1;
+      text-align: right;
+    }
+
+    .timeline-item--left .timeline-item__spacer {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    .timeline-item--right .timeline-item__card {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    .timeline-item--right .timeline-item__spacer {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .timeline-item__dot {
+      grid-column: 2;
+      grid-row: 1;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      border: 3px solid var(--clr-white);
+      box-shadow: var(--shadow-md);
+      flex-shrink: 0;
+      transition: transform var(--transition-spring);
+      cursor: default;
+    }
+
+    .timeline-item__dot:hover { transform: scale(1.2); }
+
+    .timeline-item__dot--1 { background: linear-gradient(135deg, #FFB3D1, #F472A8); }
+    .timeline-item__dot--2 { background: linear-gradient(135deg, #C084FC, #A855F7); }
+    .timeline-item__dot--3 { background: linear-gradient(135deg, #86EFAC, #34D399); }
+    .timeline-item__dot--4 { background: var(--gradient-plum); }
+
+    .timeline-item__phase {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-2);
+    }
+
+    .timeline-item__months {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--clr-neutral-900);
+      margin-bottom: var(--space-2);
+    }
+
+    .timeline-item__desc {
+      font-size: 0.875rem;
+      color: var(--clr-neutral-500);
+      line-height: 1.65;
+    }
+
+    .timeline-item__tag {
+      display: inline-block;
+      margin-top: var(--space-3);
+      padding: 3px var(--space-3);
+      background: var(--clr-lavender-50);
+      color: var(--clr-lavender-500);
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* ============================================
+       DOCTOR NOTE SECTION
+    ============================================ */
+    .doctor-note { background: var(--clr-white); }
+
+    .doctor-note__card {
+      background: linear-gradient(135deg, #FFF8F0, #FFF0F5);
+      border: 2px solid var(--clr-rose-100);
+      border-radius: var(--radius-xl);
+      padding: var(--space-10);
+      display: flex;
+      gap: var(--space-8);
+      align-items: flex-start;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .doctor-note__card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--gradient-plum);
+    }
+
+    .doctor-note__icon {
+      font-size: 3rem;
+      flex-shrink: 0;
+    }
+
+    .doctor-note__content h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--clr-neutral-900);
+      margin-bottom: var(--space-3);
+    }
+
+    .doctor-note__content p {
+      font-size: 0.9375rem;
+      color: var(--clr-neutral-500);
+      line-height: 1.75;
+    }
+
+    .doctor-note__content strong {
+      color: var(--clr-rose-600);
+    }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    .footer {
+      background: var(--clr-neutral-900);
+      padding: var(--space-12) 0 var(--space-8);
+    }
+
+    .footer__inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: var(--space-12);
+      margin-bottom: var(--space-10);
+    }
+
+    .footer__brand-logo {
+      width: 40px;
+      height: 40px;
+      background: var(--gradient-plum);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: var(--space-4);
+    }
+
+    .footer__brand-name {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--clr-white);
+      margin-bottom: var(--space-3);
+    }
+
+    .footer__brand-desc {
+      font-size: 0.875rem;
+      color: var(--clr-neutral-500);
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer__col-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clr-neutral-300);
+      margin-bottom: var(--space-4);
+    }
+
+    .footer__links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .footer__link {
+      font-size: 0.875rem;
+      color: var(--clr-neutral-500);
+      transition: color var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .footer__link:hover { color: var(--clr-rose-400); }
+
+    .footer__bottom {
+      padding-top: var(--space-6);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer__copy {
+      font-size: 0.8rem;
+      color: var(--clr-neutral-500);
+    }
+
+    .footer__disclaimer {
+      font-size: 0.75rem;
+      color: var(--clr-neutral-500);
+      max-width: 400px;
+      text-align: right;
+    }
+
+    /* ============================================
+       MOBILE NAVIGATION MENU
+    ============================================ */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: rgba(255,248,240,0.97);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-8);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-base);
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-menu__link {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--clr-neutral-900);
+      transition: color var(--transition-fast);
+    }
+
+    .mobile-menu__link:hover { color: var(--clr-rose-600); }
+
+    .mobile-menu__close {
+      position: absolute;
+      top: var(--space-5);
+      right: var(--space-6);
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--clr-neutral-500);
+      border: none;
+      background: none;
+      padding: var(--space-2);
+    }
+
+    /* ============================================
+       RESPONSIVE — TABLET (≤ 768px)
+    ============================================ */
+    @media (max-width: 900px) {
+      .hero__inner          { grid-template-columns: 1fr; text-align: center; }
+      .hero__description    { margin: 0 auto var(--space-8); }
+      .hero__actions        { justify-content: center; }
+      .hero__stats          { justify-content: center; }
+      .hero__visual         { display: none; }
+      .diagnosis-grid       { grid-template-columns: 1fr 1fr; }
+      .diag-card--full      { flex-direction: column; gap: var(--space-4); }
+      .exercise-grid        { grid-template-columns: 1fr; }
+      .secret-card          { grid-template-columns: 1fr; }
+      .secret-card::after   { display: none; }
+      .timeline-track::before { left: 24px; }
+      .timeline-item        { grid-template-columns: auto 1fr; }
+      .timeline-item__dot   { grid-column: 1; grid-row: 1; }
+      .timeline-item--left .timeline-item__card,
+      .timeline-item--right .timeline-item__card  { grid-column: 2; grid-row: 1; text-align: left; }
+      .timeline-item__spacer { display: none; }
+      .footer__inner        { grid-template-columns: 1fr 1fr; }
+      .nav__links           { display: none; }
+      .nav__hamburger       { display: flex; }
+    }
+
+    @media (max-width: 600px) {
+      .diagnosis-grid { grid-template-columns: 1fr; }
+      .exercises-intro { grid-template-columns: 1fr; }
+      .exercises-intro__meta { flex-direction: row; justify-content: center; }
+      .doctor-note__card { flex-direction: column; gap: var(--space-4); }
+      .footer__inner { grid-template-columns: 1fr; }
+      .footer__bottom { flex-direction: column; gap: var(--space-3); text-align: center; }
+      .footer__disclaimer { text-align: center; }
+      .hero__stats { flex-direction: column; gap: var(--space-5); align-items: center; }
+    }
+
+    /* ============================================
+       SCROLL TO TOP BUTTON
+    ============================================ */
+    .scroll-top {
+      position: fixed;
+      bottom: var(--space-6);
+      right: var(--space-6);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gradient-plum);
+      color: var(--clr-white);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      box-shadow: 0 6px 20px rgba(147,51,234,0.4);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity var(--transition-base), transform var(--transition-base);
+      z-index: 100;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(147,51,234,0.5);
+    }
+  </style>
 </head>
-<body data-lang="en">
+<body>
 
-  <div class="container">
-    
-    <nav class="top-bar">
-      <div class="logo heading">
-        <i class="fa-solid fa-spa" style="color: var(--c-sage);"></i>
-        Aura Wellness
-      </div>
-      <button class="lang-toggle" id="langBtn" aria-label="Toggle Language">
-        <i class="fa-solid fa-language"></i> 
-        <span class="en">සිංහල</span><span class="si">English</span>
-      </button>
-    </nav>
-
-    <header class="hero">
-      <span class="eyebrow"><span class="en">Hormonal Balance & Fitness</span><span class="si">හෝමෝන සමතුලිතතාවය සහ යෝග්‍යතාවය</span></span>
-      <h1 class="heading en">The "Zero-Friction" Blueprint</h1>
-      <h1 class="heading si">ශුන්‍ය-ඝර්ෂණ (Zero-Friction) සැලැස්ම</h1>
-      <p class="body-text en">A gentle, science-backed approach to managing PCOS, balancing hormones, and building consistency without ever leaving your bed.</p>
-      <p class="body-text si">PCOS පාලනය කරමින්, හෝමෝන සමතුලිත කරමින්, ඇඳෙන් පහළට නොබැසම ව්‍යායාම කිරීමේ විද්‍යාත්මක සහ මෘදු ක්‍රමවේදය.</p>
-      
-      <div class="stats-row body-text">
-        <div class="stat-pill"><i class="fa-solid fa-calendar-days"></i> <span class="en">3 Days/Week</span><span class="si">සතියකට දින 3යි</span></div>
-        <div class="stat-pill"><i class="fa-solid fa-stopwatch"></i> <span class="en">10 Minutes</span><span class="si">විනාඩි 10යි</span></div>
-        <div class="stat-pill"><i class="fa-solid fa-bed"></i> <span class="en">Zero Equipment</span><span class="si">උපකරණ අනවශ්‍යයි</span></div>
-      </div>
-    </header>
-
-    <div>
-      <h2 class="section-title heading"><span class="en">1. The Diagnosis & Strategy</span><span class="si">1. ප්‍රධාන ගැටලු සහ උපායමාර්ගය</span></h2>
-      <p class="body-text text-muted" style="margin-bottom: var(--sp-3);">
-        <span class="en">Getting fat quickly even when eating little is not in your head, and it is not laziness. Here is the physiological reality:</span>
-        <span class="si">අඩුවෙන් ආහාර ගත්තද ඉක්මනින් මහත් වීම ඔබේ වරදක් හෝ කම්මැලිකමක් නොවේ. ඊට බලපාන කායික විද්‍යාත්මක සත්‍යය මෙයයි:</span>
-      </p>
-      
-      <div class="bento-grid">
-        <div class="card c-pcos">
-          <div class="c-icon"><i class="fa-solid fa-droplet"></i></div>
-          <h3 class="heading"><span class="en">PCOS & Insulin Resistance</span><span class="si">PCOS සහ ඉන්සියුලින් ප්‍රතිරෝධය</span></h3>
-          <p class="body-text en">Polycystic Ovary Syndrome (PCOS) or uterine issues cause severe Insulin Resistance. Your body overproduces insulin to process even small carbs. High insulin acts as a fat-storage hormone, directing fat to the lower belly.</p>
-          <p class="body-text si">PCOS හෝ ගර්භාෂ ගැටලු නිසා දරුණු ඉන්සියුලින් ප්‍රතිරෝධයක් ඇතිවේ. කුඩා කාබෝහයිඩ්‍රේට් ප්‍රමාණයක් දිරවීමටද සිරුර වැඩිපුර ඉන්සියුලින් නිපදවයි. එය යටි බඩ ප්‍රදේශයේ මේදය තැන්පත් කරන හෝමෝනයක් ලෙස ක්‍රියා කරයි.</p>
-        </div>
-        
-        <div class="card c-cort">
-          <div class="c-icon"><i class="fa-solid fa-bolt"></i></div>
-          <h3 class="heading"><span class="en">The Cortisol Trap</span><span class="si">කෝටිසෝල් උගුල (ආතතිය)</span></h3>
-          <p class="body-text en">High-intensity cardio (running, jumping) spikes cortisol (the stress hormone) in women with PCOS. This actually triggers <em>more</em> belly fat storage and worsens menstrual irregularities. Boot camps are the enemy right now.</p>
-          <p class="body-text si">PCOS ඇති කාන්තාවන් අධික වෙහෙසකර ව්‍යායාම (දිවීම, පැනීම) කළ විට කෝටිසෝල් (ආතති හෝමෝනය) ඉහළ යයි. ඉන් යටි බඩේ මේදය තවත් වැඩි වන අතර ආර්තව ගැටලු උග්‍ර වේ.</p>
+  <!-- ============================================
+       NAVIGATION
+  ============================================ -->
+  <nav class="nav" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <div class="nav__brand">
+          <div class="nav__logo" aria-hidden="true">🌸</div>
+          <span class="nav__brand-name">ZeroFriction Fit</span>
         </div>
 
-        <div class="card c-sol b-span-2">
-          <div class="c-icon"><i class="fa-solid fa-leaf"></i></div>
-          <h3 class="heading"><span class="en">The Solution: Low-Impact Resistance</span><span class="si">විසඳුම: අඩු තීව්‍රතාවයකින් යුත් ව්‍යායාම</span></h3>
-          <p class="body-text en">You need low-intensity, low-impact resistance training. Building slight muscle density naturally improves insulin sensitivity, meaning your body will use food for energy instead of storing it as belly fat.</p>
-          <p class="body-text si">ඔබට අවශ්‍ය වන්නේ සිරුරට වෙහෙස අඩු, ප්‍රතිරෝධී ව්‍යායාම (Resistance training) ය. සුළු වශයෙන් හෝ මාංශ පේශි වර්ධනය වීමෙන් ඉන්සියුලින් සංවේදීතාව ඉහළ යයි. එවිට සිරුර ආහාර මේදය ලෙස තැන්පත් කරනවා වෙනුවට ශක්තිය ලෙස දහනය කරයි.</p>
-        </div>
+        <ul class="nav__links" role="list">
+          <li><a href="#diagnosis" class="nav__link">The Diagnosis</a></li>
+          <li><a href="#exercises" class="nav__link">Bed Routine</a></li>
+          <li><a href="#secret-weapon" class="nav__link">Secret Weapon</a></li>
+          <li><a href="#timeline" class="nav__link">Roadmap</a></li>
+          <li><a href="#timeline" class="nav__link nav__cta">Start Today ✨</a></li>
+        </ul>
+
+        <button class="nav__hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
+  </nav>
 
-    <div>
-      <h2 class="section-title heading"><span class="en">2. Phase 0.1: The Bed Routine</span><span class="si">2. අදියර 0.1: ඇඳ මත කරන ව්‍යායාම</span></h2>
-      <div class="routine-wrap">
-        <p class="body-text routine-intro">
-          <span class="en">To overcome the barrier of being "lazy to exercise," we remove all friction. No shoes, no yoga mat, no leaving the bed. A firm mattress provides slight instability, which engages your core muscles even more effectively. Do this 3 days a week.</span>
-          <span class="si">ව්‍යායාම කිරීමට ඇති "කම්මැලිකම" මඟහරවා ගැනීමට අප සියලු බාධා ඉවත් කරමු. සපත්තු අනවශ්‍යයි, මැට් අනවශ්‍යයි, ඇඳෙන් බැසීමද අනවශ්‍යයි. මෙට්ටයේ ඇති අස්ථායී බව නිසා ඔබේ උදරයේ මාංශ පේශි වඩාත් හොඳින් ක්‍රියාත්මක වේ. සතියකට දින 3ක් පමණක් මෙය කරන්න.</span>
-        </p>
-
-        <div class="exercise-list">
-          
-          <div class="ex-item">
-            <div class="ex-num">1</div>
-            <div class="ex-content">
-              <h4 class="heading"><span class="en">The Mattress Glute Bridge</span><span class="si">මැට්‍රස් ග්ලූට් බ්‍රිජ් (Glute Bridge)</span></h4>
-              <div class="ex-target"><span class="en">Target: Glutes & Lower Back</span><span class="si">ඉලක්කය: උකුල සහ යටිකය</span></div>
-              <p class="body-text en">Lie on your back with knees bent and feet flat on the mattress. Squeeze your glutes and lift your hips until your body forms a straight line. Hold for 2 seconds, then lower slowly.</p>
-              <p class="body-text si">දණහිස් නමාගෙන උඩුබැලි අතට වැතිරෙන්න. උකුල ප්‍රදේශය තද කරමින් සිරුර සෘජු රේඛාවක් වන සේ ඉහළට ඔසවන්න. තත්පර 2ක් තබාගෙන සෙමින් පහළට ගෙන එන්න.</p>
-              <div class="ex-reps"><i class="fa-solid fa-rotate-right"></i> <span class="en">2 sets of 10-12 slow reps</span><span class="si">සෙමින් වාර 10-12 බැගින් වට 2ක්</span></div>
-            </div>
-          </div>
-
-          <div class="ex-item">
-            <div class="ex-num">2</div>
-            <div class="ex-content">
-              <h4 class="heading"><span class="en">Clamshells (Side-Lying)</span><span class="si">ක්ලැම්ෂෙල්ස් (Clamshells)</span></h4>
-              <div class="ex-target"><span class="en">Target: Outer Thighs & Pelvic Health</span><span class="si">ඉලක්කය: කලවා සහ උකුල</span></div>
-              <p class="body-text en">Lie on your side with knees bent at a 45-degree angle. Keeping your feet together, open your top knee like a clamshell opening, then close it slowly.</p>
-              <p class="body-text si">දණහිස් අංශක 45කට නමාගෙන ඇලයට වැතිරෙන්න. පාද දෙක එකට තබාගෙන, උඩින් ඇති දණහිස බෙල්ලෙකුගේ කටුවක් සේ ඉහළට විවෘත කර සෙමින් වසන්න.</p>
-              <div class="ex-reps"><i class="fa-solid fa-rotate-right"></i> <span class="en">2 sets of 10 reps per leg</span><span class="si">එක් කකුලකට වාර 10 බැගින් වට 2ක්</span></div>
-            </div>
-          </div>
-
-          <div class="ex-item">
-            <div class="ex-num">3</div>
-            <div class="ex-content">
-              <h4 class="heading"><span class="en">Lying Single-Leg Tucks</span><span class="si">ලයින්ග් සිංගල්-ලෙග් ටක්ස් (Single-Leg Tucks)</span></h4>
-              <div class="ex-target"><span class="en">Target: Lower Belly Fat & Deep Core</span><span class="si">ඉලක්කය: යටි බඩේ මේදය දහනය</span></div>
-              <p class="body-text en">Lie flat on your back. Pull one knee into your chest, extend it straight out without letting the heel touch the bed, and bring it back. (Lifting both legs on a mattress hurts the lower back—stick to one leg).</p>
-              <p class="body-text si">උඩුබැලි අතට වැතිරෙන්න. එක් දණහිසක් පපුව දෙසට නමාගෙන, නැවත විලුඹ ඇඳේ නොගෑවෙන සේ කකුල දිග හරින්න. (කකුල් දෙකම එකවර එසවීමෙන් කොන්දට හානි විය හැක).</p>
-              <div class="ex-reps"><i class="fa-solid fa-rotate-right"></i> <span class="en">2 sets of 8 reps per leg</span><span class="si">එක් කකුලකට වාර 8 බැගින් වට 2ක්</span></div>
-            </div>
-          </div>
-
-          <div class="ex-item">
-            <div class="ex-num">4</div>
-            <div class="ex-content">
-              <h4 class="heading"><span class="en">The Pillow Squeeze</span><span class="si">කොට්ටය මිරිකීම (Pillow Squeeze)</span></h4>
-              <div class="ex-target"><span class="en">Target: Inner Thighs & Pelvic Floor</span><span class="si">ඉලක්කය: කලවා ඇතුළත සහ ශ්‍රෝණිය</span></div>
-              <p class="body-text en">Lie on your back with knees bent. Place a thick, folded pillow between your knees. Squeeze the pillow as hard as you can using your inner thighs for 5 seconds, then release.</p>
-              <p class="body-text si">දණහිස් නමාගෙන උඩුබැලි අතට වැතිරෙන්න. ඝන කොට්ටයක් දණහිස් අතර තබා, කලවා වලින් කොට්ටය උපරිම වෙර යොදා තත්පර 5ක් මිරිකාගෙන සිට අත්හරින්න.</p>
-              <div class="ex-reps"><i class="fa-solid fa-rotate-right"></i> <span class="en">2 sets of 8 squeezes</span><span class="si">මිරිකීම් 8 බැගින් වට 2ක්</span></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <h2 class="section-title heading"><span class="en">3. Progression Strategy</span><span class="si">3. ප්‍රගති සැලැස්ම (2026 ජූනි – 2027 ජනවාරි)</span></h2>
-      <div class="timeline">
-        
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-time"><span class="en">Month 1</span><span class="si">මාසය 1</span></div>
-          <h4 class="heading tl-title"><span class="en">Consistency over Intensity</span><span class="si">පුරුද්දක් කරගැනීම</span></h4>
-          <p class="body-text tl-desc en">Do not track your weight. The only goal is to perform this 10-minute bed routine 3 times a week. We are just building the habit.</p>
-          <p class="body-text tl-desc si">බර කිරන්න එපා. එකම අරමුණ සතියකට දින 3ක් මෙම විනාඩි 10යේ ව්‍යායාමය කිරීම පමණි. අප උත්සාහ කරන්නේ පුරුද්දක් ගොඩනැගීමටයි.</p>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-time"><span class="en">Month 2 & 3</span><span class="si">මාසය 2 සහ 3</span></div>
-          <h4 class="heading tl-title"><span class="en">Adding Resistance</span><span class="si">ප්‍රතිරෝධය වැඩි කිරීම</span></h4>
-          <p class="body-text tl-desc en">Once the bed routine becomes easy, we move off the bed to the floor (using a thick towel) and introduce light resistance bands to the clamshells and glute bridges.</p>
-          <p class="body-text tl-desc si">ඇඳ මත කරන ව්‍යායාම පහසු වූ පසු, ඝන තුවායක් මත බිමට වී ව්‍යායාම කිරීම අරඹමු. Clamshells සහ Glute bridges සඳහා සැහැල්ලු Resistance bands හඳුන්වා දෙමු.</p>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-time"><span class="en">Month 4 to 6</span><span class="si">මාසය 4 සිට 6 දක්වා</span></div>
-          <h4 class="heading tl-title"><span class="en">The Burn</span><span class="si">මේදය දහනය</span></h4>
-          <p class="body-text tl-desc en">We introduce standing, low-impact movements (like bodyweight squats and reverse lunges holding a chair) to burn maximum calories and shape the legs and core.</p>
-          <p class="body-text tl-desc si">කැලරි දහනය උපරිම කිරීමට සහ සිරුර හැඩ කිරීමට, සිටගෙන කරන නමුත් සිරුරට වෙහෙස අඩු ව්‍යායාම (Squats සහ පුටුවක් අල්ලාගෙන කරන Lunges) ආරම්භ කරමු.</p>
-        </div>
-
-      </div>
-
-      <div class="secret-weapon">
-        <div class="sw-icon"><i class="fa-solid fa-shoe-prints"></i></div>
-        <div class="sw-content">
-          <h4 class="heading"><span class="en">The Daily "Secret Weapon"</span><span class="si">දෛනික "රහස් ආයුධය"</span></h4>
-          <p class="body-text en">Take a <strong>10-minute walk immediately after lunch or dinner</strong>. Just 10 minutes of walking after a meal helps stabilize blood sugar without spiking stress hormones, which is highly effective for reducing PCOS belly fat.</p>
-          <p class="body-text si"><strong>දිවා හෝ රාත්‍රී ආහාරයෙන් පසු වහාම විනාඩි 10ක් ඇවිදින්න</strong>. කෑමෙන් පසු විනාඩි 10ක් ඇවිදීමෙන් ආතති හෝමෝන වැඩි නොකර රුධිරයේ සීනි මට්ටම පාලනය වේ. මෙය PCOS නිසා ඇතිවන යටි බඩේ මේදය දහනයට අතිශයින්ම ඵලදායී වේ.</p>
-        </div>
-      </div>
-
-    </div>
-
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <button class="mobile-menu__close" id="closeMenuBtn" aria-label="Close menu">✕</button>
+    <a href="#diagnosis" class="mobile-menu__link" data-close-menu>The Diagnosis</a>
+    <a href="#exercises" class="mobile-menu__link" data-close-menu>Bed Routine</a>
+    <a href="#secret-weapon" class="mobile-menu__link" data-close-menu>Secret Weapon</a>
+    <a href="#timeline" class="mobile-menu__link" data-close-menu>Roadmap</a>
   </div>
 
+  <!-- ============================================
+       HERO SECTION
+  ============================================ -->
+  <header class="hero" role="banner">
+    <div class="hero__bg-orb hero__bg-orb--1" aria-hidden="true"></div>
+    <div class="hero__bg-orb hero__bg-orb--2" aria-hidden="true"></div>
+    <div class="hero__bg-orb hero__bg-orb--3" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero__inner">
+        <!-- Hero Text -->
+        <div class="hero__content">
+          <div class="hero__eyebrow reveal">
+            <div class="hero__pulse" aria-hidden="true"></div>
+            <span class="hero__eyebrow-text">Zero Friction Fitness Plan</span>
+          </div>
+
+          <h1 class="hero__heading reveal stagger-1">
+            Your body is not<br />
+            your <em>enemy.</em><br />
+            It needs your <em>love.</em>
+          </h1>
+
+          <p class="hero__description reveal stagger-2">
+            A <strong>science-backed, PCOS-aware</strong> fitness plan designed for real life —
+            no gym, no mat, no excuses. Just you, your bed,
+            and <strong>8 minutes, 3 days a week.</strong>
+          </p>
+
+          <div class="hero__actions reveal stagger-3">
+            <a href="#exercises" class="btn btn--primary">
+              🛏️ Start Bed Routine
+            </a>
+            <a href="#diagnosis" class="btn btn--ghost">
+              Learn Why It Works
+            </a>
+          </div>
+
+          <div class="hero__stats reveal stagger-4">
+            <div class="hero__stat">
+              <div class="hero__stat-value">8 min</div>
+              <div class="hero__stat-label">Per session</div>
+            </div>
+            <div class="hero__stat">
+              <div class="hero__stat-value">3×</div>
+              <div class="hero__stat-label">Per week</div>
+            </div>
+            <div class="hero__stat">
+              <div class="hero__stat-value">Jan '27</div>
+              <div class="hero__stat-label">Goal date</div>
+            </div>
+            <div class="hero__stat">
+              <div class="hero__stat-value">0</div>
+              <div class="hero__stat-label">Equipment needed</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual Card -->
+        <div class="hero__visual" aria-hidden="true">
+          <div class="hero__card-stack">
+            <div class="hero__floating-tag hero__floating-tag--1">
+              🔥 PCOS-Friendly
+            </div>
+            <div class="hero__floating-tag hero__floating-tag--2">
+              ✅ No Gym Needed
+            </div>
+
+            <div class="hero__main-card">
+              <span class="hero__card-emoji">🛏️</span>
+              <h2 class="hero__card-title">Tonight's Routine</h2>
+              <p class="hero__card-sub">Phase 1 · Week 1 · 3 days/week</p>
+
+              <div class="hero__progress-label">
+                <span>Journey Progress</span>
+                <span id="progressPct">0%</span>
+              </div>
+              <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar__fill" id="progressFill"></div>
+              </div>
+
+              <div class="hero__routine-chips">
+                <span class="chip chip--rose">🍑 Glute Bridge</span>
+                <span class="chip chip--lavender">🦪 Clamshells</span>
+                <span class="chip chip--green">🦵 Leg Tucks</span>
+                <span class="chip chip--amber">🛋️ Pillow Squeeze</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================
+       DIAGNOSIS SECTION
+  ============================================ -->
+  <section class="diagnosis section" id="diagnosis" aria-labelledby="diagnosisHeading">
+    <div class="container">
+
+      <div class="section__header reveal">
+        <p class="section__eyebrow">The Diagnosis</p>
+        <h2 class="section__heading" id="diagnosisHeading">
+          It's not laziness.<br />
+          <span class="text-gradient">It's your hormones.</span>
+        </h2>
+        <p class="section__sub">
+          Understanding the real reason behind your body's response is the
+          first step to changing it. Your frustration is 100% valid.
+        </p>
+      </div>
+
+      <!-- Validation Banner -->
+      <div class="validation-banner reveal">
+        <div class="validation-banner__icon" aria-hidden="true">💜</div>
+        <div class="validation-banner__text">
+          <h3>First and most importantly — validate your frustration.</h3>
+          <p>
+            The feeling that you <strong>"get fat quickly even when eating a little bit"</strong>
+            is not in your head, and it is absolutely not because you're lazy.
+            There is a real physiological reason, and understanding it changes everything.
+          </p>
+        </div>
+      </div>
+
+      <!-- Diagnosis Bento Grid -->
+      <div class="diagnosis-grid">
+        <div class="diag-card reveal stagger-1">
+          <div class="diag-card__icon-wrap diag-card__icon-wrap--rose" aria-hidden="true">🧬</div>
+          <h3 class="diag-card__title">PCOS & Insulin Resistance</h3>
+          <p class="diag-card__body">
+            PCOS or related uterine issues often cause severe
+            <strong>Insulin Resistance.</strong> Your body overproduces
+            insulin to process even small amounts of carbohydrates.
+            High insulin acts as a <strong>fat-storage hormone</strong>,
+            directing the body to store fat around the lower belly.
+          </p>
+        </div>
+
+        <div class="diag-card reveal stagger-2">
+          <div class="diag-card__icon-wrap diag-card__icon-wrap--lavender" aria-hidden="true">⚡</div>
+          <h3 class="diag-card__title">The Cortisol Trap</h3>
+          <p class="diag-card__body">
+            High-intensity cardio (like running or intense jumping)
+            can <strong>spike cortisol</strong> (the stress hormone)
+            in women with PCOS. This actually <strong>triggers more belly
+            fat storage</strong> and can worsen menstrual irregularities —
+            the opposite of what you want.
+          </p>
+        </div>
+
+        <div class="diag-card reveal stagger-3">
+          <div class="diag-card__icon-wrap diag-card__icon-wrap--green" aria-hidden="true">✨</div>
+          <h3 class="diag-card__title">The Smart Solution</h3>
+          <p class="diag-card__body">
+            You need <strong>low-intensity, low-impact resistance training.</strong>
+            Building slight muscle density naturally improves insulin
+            sensitivity — your body will start using food for energy
+            <strong>instead of storing it as belly fat.</strong>
+          </p>
+        </div>
+
+        <div class="diag-card diag-card--full reveal">
+          <div class="diag-card__icon-wrap diag-card__icon-wrap--rose" style="background:var(--clr-lavender-100);" aria-hidden="true">🚫</div>
+          <div>
+            <h3 class="diag-card__title">Why Boot Camps Will Always Fail You</h3>
+            <p class="diag-card__body">
+              When dealing with a beginner who is highly resistant to exercise and battling suspected
+              hormonal roadblocks, the <strong>worst thing you can do</strong> is start with a
+              rigorous, high-intensity boot camp. It spikes stress hormones, worsens symptoms,
+              and causes you to quit in a week. Our approach is engineered to be the
+              <strong>opposite</strong> — zero friction, zero overwhelm, maximum long-term results.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       EXERCISES SECTION
+  ============================================ -->
+  <section class="exercises section" id="exercises" aria-labelledby="exercisesHeading">
+    <div class="container">
+
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Phase 0.1 · The Bed Routine</p>
+        <h2 class="section__heading" id="exercisesHeading">
+          The <span class="text-gradient">"Zero-Friction"</span><br />
+          Bed Routine
+        </h2>
+        <p class="section__sub">
+          No shoes. No mat. No leaving the bed. Just 8–10 minutes and the
+          power of consistency. Done before sleep or right after waking up.
+        </p>
+      </div>
+
+      <!-- Routine Meta Info -->
+      <div class="exercises-intro reveal">
+        <div class="exercises-intro__text">
+          <h2>Your Nightly Ritual 🌙</h2>
+          <p>
+            A firm mattress provides slight instability which actually
+            <strong>engages your core muscles more effectively</strong>
+            than a flat floor. This routine is designed to build the habit
+            first, and the body second. Consistency is the <em>only</em> goal in Month 1.
+          </p>
+        </div>
+        <div class="exercises-intro__meta">
+          <div class="meta-pill meta-pill--rose">
+            <div class="meta-pill__value">3×</div>
+            <div class="meta-pill__label">Per Week</div>
+          </div>
+          <div class="meta-pill meta-pill--lavender">
+            <div class="meta-pill__value">8–10</div>
+            <div class="meta-pill__label">Minutes</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exercise Cards -->
+      <div class="exercise-grid">
+
+        <!-- Exercise 1: Glute Bridge -->
+        <div class="exercise-card reveal stagger-1">
+          <div class="exercise-card__header exercise-card__header--rose">
+            <span class="exercise-card__number" aria-hidden="true">01</span>
+            <span class="exercise-card__emoji" role="img" aria-label="Glute Bridge">🍑</span>
+            <h3 class="exercise-card__name">Mattress Glute Bridge</h3>
+            <p class="exercise-card__focus">
+              🎯 Glutes · Hamstrings · Lower Back Stability
+            </p>
+          </div>
+          <div class="exercise-card__body">
+            <ul class="exercise-card__steps" role="list">
+              <li class="exercise-card__step">
+                <span class="step-dot step-dot--rose" aria-hidden="true">1</span>
+                <span>Lie on your back with knees bent, feet flat on the mattress.</span>
+              </li>
+              <li class="exercise-card__step">
+                <span class="step-dot step-dot--rose" aria-hidden="true">2</span>
+                <span>Squeeze your glutes and lift your hips until your body forms a straight line from knees to shoulders.</span>
+              </li>
+              <li class="exercise-card__step">
+                <span class="step-dot step-dot--rose" aria-hidden="true">3</span>
+                <span>Hold for 2 seconds at the top, then lower slowly and with control.</span>
+              </li>
+            </ul>
+            <div class="exercise-card__target">
+              <span class="exercise-card__target-label">🎯 Target</span>
+              <span class="exercise-card__target-value">2 sets × 10–12 slow reps</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Exercise 2: Clamshells -->
+        <div class="exercise-card reveal stagger-2">
+          <div class="exercise-card__header exercise-card__header--lavender">
+            <span class="exercise-card__number" aria-hidden="true">02</span>
+            <span class="exercise-card__emoji" role="img" aria-label="Clamshells">🦪</span>
+            <h3 class="exercise-card__name">Clamshells (Side-Lying)</h3>
+            <p class="exercise-card__focus">
+              🎯 Outer Thighs · Hips · Pelvic Health
+            </p>
+          </div>
+          <div class="exercise-card__body">
+            <ul class="exercise-card__steps" role="list">
+              <li class="exercise-card__step">
+                <span class="step-dot step-dot--lavender" aria-hidden="true">1</span>
+                <span>Lie on your side with knees bent at a 45-degree angle, hips stacked.</span>
+              </li>
+              <li class="exercise-card__step">
+                <span class="step-dot step-dot--lavender" aria-hidden="true">2</span>
+                <span>Keeping your feet together, open your top knee upward like a clamshell opening.</span>
+              </li>
+              <li class="exercise-card__step">
+                <span class="step-dot step-dot--lavender" aria-hidden="true">3</span>
+                <span>Close it slowly back to the start. Repeat on the other side.</span>
+              </li>
+            </ul>
+            <div class="exercise-card__target">
+              <span class="exercise-card__target-label">🎯 Target</span>
+              <span class="exercise-card__target-value">2 sets × 10 reps per leg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Exercise 3: Single Leg Tucks -->
+        <div class="exercise-card reveal stagger-3">
+          <div class="exercise-card__header exercise-card__header--green">
+            <span class="exercise-card__number" aria-hidden="true">03</span>
+            <span class="exercise-card__emoji" role="img" aria-label="Leg Tucks">🦵</span>
+            <h3 class="exercise-card__name">Lying Single-Leg Tucks</h3>
+            <p class="exercise-card__focus">
+              🎯 Lower Belly · Deep Core Activation
+            </p>
+          </div>
+          <div class="exercise-card__body">
+            <ul class="exercise-card__steps" role="list">
+              <li class="exercise-card__step">
+                <span class="step-dot step-dot--green" aria-hidden="true">1</span>
+                <span>Lie flat on your back on the mattress, arms by your sides.</span>
+              </li>
+              <li class="exercise-card__step">
+                <span class="step-dot step-dot--green" aria-hidden="true">2</span>
+                <span>Pull one knee into your chest, then extend it straight out without letting the heel touch the bed.</span>
+              </li>
+              <li class="exercise-card__step">
+                <span class="step-dot step-dot--green" aria-hidden="true">3</span>
+                <span>Bring it back to your chest and repeat. This is safer on a mattress than double-leg raises.</span>
+              </li>
+            </ul>
+            <div class="exercise-card__target">
+              <span class="exercise-card__target-label">🎯 Target</span>
+              <span class="exercise-card__target-value">2 sets × 8 reps per leg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Exercise 4: Pillow Squeeze -->
+        <div class="exercise-card reveal stagger-4">
+          <div class="exercise-card__header exercise-card__header--amber">
+            <span class="exercise-card__number" aria-hidden="true">04</span>
+            <span class="exercise-card__emoji" role="img" aria-label="Pillow Squeeze">🛋️</span>
+            <h3 class="exercise-card__name">The Pillow Squeeze</h3>
+            <p class="exercise-card__focus">
+              🎯 Inner Thighs · Pelvic Floor (Isometric)
+            </p>
+          </div>
+          <div class="exercise-card__body">
+            <ul class="exercise-card__steps" role="list">
+              <li class="exercise-card__step">
+                <span class="step-dot step-dot--amber" aria-hidden="true">1</span>
+                <span>Lie on your back with knees bent. Grab any thick, folded pillow.</span>
+              </li>
+              <li class="exercise-card__step">
+                <span class="step-dot step-dot--amber" aria-hidden="true">2</span>
+                <span>Place the pillow between your knees and squeeze it as hard as you can using your inner thighs.</span>
+              </li>
+              <li class="exercise-card__step">
+                <span class="step-dot step-dot--amber" aria-hidden="true">3</span>
+                <span>Hold for 5 full seconds, then slowly release. Rest and repeat.</span>
+              </li>
+            </ul>
+            <div class="exercise-card__target">
+              <span class="exercise-card__target-label">🎯 Target</span>
+              <span class="exercise-card__target-value">2 sets × 8 squeezes (5 sec hold)</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECRET WEAPON SECTION
+  ============================================ -->
+  <section class="secret-weapon section" id="secret-weapon" aria-labelledby="secretHeading">
+    <div class="container">
+
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Daily Habit</p>
+        <h2 class="section__heading" id="secretHeading">
+          The Daily <span class="text-gradient">"Secret Weapon"</span>
+        </h2>
+        <p class="section__sub">
+          The single most powerful and easiest thing you can do every day
+          to fight PCOS belly fat — without any exercise gear.
+        </p>
+      </div>
+
+      <div class="secret-card reveal">
+        <!-- Left: Text Content -->
+        <div class="secret-card__left">
+          <span class="secret-card__eyebrow">🔑 Daily Secret Weapon</span>
+          <h2 class="secret-card__heading">10-Minute Post-Meal Walk</h2>
+          <p class="secret-card__body">
+            Immediately after <strong>lunch or dinner</strong>, take a gentle
+            10-minute walk. This simple habit directly stabilizes your blood sugar
+            without spiking stress hormones — making it <strong>highly effective
+            against PCOS belly fat.</strong> You don't need to walk fast.
+            Just move.
+          </p>
+
+          <div class="secret-benefits" role="list">
+            <div class="secret-benefit" role="listitem">
+              <span class="secret-benefit__icon" aria-hidden="true">📉</span>
+              <span class="secret-benefit__text">Stabilizes blood sugar after meals (critical for insulin resistance)</span>
+            </div>
+            <div class="secret-benefit" role="listitem">
+              <span class="secret-benefit__icon" aria-hidden="true">🧘</span>
+              <span class="secret-benefit__text">Does NOT spike cortisol — safe for PCOS warriors</span>
+            </div>
+            <div class="secret-benefit" role="listitem">
+              <span class="secret-benefit__icon" aria-hidden="true">🔥</span>
+              <span class="secret-benefit__text">Directly targets hormonal belly fat storage mechanism</span>
+            </div>
+            <div class="secret-benefit" role="listitem">
+              <span class="secret-benefit__icon" aria-hidden="true">⚡</span>
+              <span class="secret-benefit__text">Zero equipment, zero cost, zero friction</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Timer Visual -->
+        <div class="secret-timer">
+          <div class="secret-timer__circle">
+            <svg class="secret-timer__svg" viewBox="0 0 140 140" aria-hidden="true">
+              <defs>
+                <linearGradient id="timerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#F472A8"/>
+                  <stop offset="100%" style="stop-color:#9333EA"/>
+                </linearGradient>
+              </defs>
+              <circle class="secret-timer__track" cx="70" cy="70" r="65"/>
+              <circle class="secret-timer__fill" id="timerCircle" cx="70" cy="70" r="65"/>
+            </svg>
+            <div class="secret-timer__inner">
+              <div class="secret-timer__value">10</div>
+              <div class="secret-timer__unit">minutes</div>
+            </div>
+          </div>
+
+          <div class="secret-timer__label">🚶‍♀️ Post-Meal Walk</div>
+          <div class="secret-timer__sub">Immediately after eating</div>
+
+          <div class="secret-timer__meals">
+            <span class="meal-tag">🍽️ After Lunch</span>
+            <span class="meal-tag">🌙 After Dinner</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================
+       PROGRESSION TIMELINE
+  ============================================ -->
+  <section class="timeline section" id="timeline" aria-labelledby="timelineHeading">
+    <div class="container">
+
+      <div class="section__header reveal">
+        <p class="section__eyebrow">The 7-Month Roadmap</p>
+        <h2 class="section__heading" id="timelineHeading">
+          June 2026 <span class="text-gradient">→</span> January 2027
+        </h2>
+        <p class="section__sub">
+          A carefully engineered progression from absolute beginner to a confident,
+          strong, metabolically-efficient woman. Every phase builds on the last.
+        </p>
+      </div>
+
+      <div class="timeline-track" role="list">
+
+        <!-- Month 1 -->
+        <div class="timeline-item timeline-item--left reveal" role="listitem">
+          <div class="timeline-item__card">
+            <p class="timeline-item__phase" style="color: var(--clr-rose-500);">Phase 1</p>
+            <h3 class="timeline-item__months">Month 1 · June 2026</h3>
+            <p class="timeline-item__desc">
+              <strong>Consistency over Intensity.</strong> Do not track weight.
+              The only goal is to perform the 10-minute bed routine 3 times a week.
+              We are building the habit loop — nothing else matters right now.
+            </p>
+            <span class="timeline-item__tag">🛏️ Bed Only · Zero Weights</span>
+          </div>
+          <div class="timeline-item__dot timeline-item__dot--1" aria-hidden="true">🌱</div>
+          <div class="timeline-item__spacer"></div>
+        </div>
+
+        <!-- Months 2-3 -->
+        <div class="timeline-item timeline-item--right reveal" role="listitem">
+          <div class="timeline-item__spacer"></div>
+          <div class="timeline-item__dot timeline-item__dot--2" aria-hidden="true">💪</div>
+          <div class="timeline-item__card">
+            <p class="timeline-item__phase" style="color: var(--clr-lavender-500);">Phase 2</p>
+            <h3 class="timeline-item__months">Months 2–3 · Jul–Aug 2026</h3>
+            <p class="timeline-item__desc">
+              <strong>Adding Resistance.</strong> Once the bed routine becomes easy,
+              we move to the floor (using a thick towel) and introduce
+              <strong>light resistance bands</strong> to clamshells and glute bridges.
+            </p>
+            <span class="timeline-item__tag">🏠 Floor · Resistance Bands</span>
+          </div>
+        </div>
+
+        <!-- Months 4-6 -->
+        <div class="timeline-item timeline-item--left reveal" role="listitem">
+          <div class="timeline-item__card">
+            <p class="timeline-item__phase" style="color: #16A34A;">Phase 3</p>
+            <h3 class="timeline-item__months">Months 4–6 · Sep–Nov 2026</h3>
+            <p class="timeline-item__desc">
+              <strong>The Burn.</strong> We introduce standing, low-impact movements —
+              bodyweight squats and reverse lunges holding a chair —
+              to burn maximum calories and shape the legs and core.
+            </p>
+            <span class="timeline-item__tag">🏋️ Standing Movements · Max Shape</span>
+          </div>
+          <div class="timeline-item__dot timeline-item__dot--3" aria-hidden="true">🔥</div>
+          <div class="timeline-item__spacer"></div>
+        </div>
+
+        <!-- January 2027 Goal -->
+        <div class="timeline-item timeline-item--right reveal" role="listitem">
+          <div class="timeline-item__spacer"></div>
+          <div class="timeline-item__dot timeline-item__dot--4" aria-hidden="true">🌟</div>
+          <div class="timeline-item__card" style="background: linear-gradient(135deg, var(--clr-lavender-50), var(--clr-rose-50)); border-color: var(--clr-lavender-200);">
+            <p class="timeline-item__phase" style="color: var(--clr-plum-700);">🎯 Goal Reached</p>
+            <h3 class="timeline-item__months">January 2027 — New You</h3>
+            <p class="timeline-item__desc">
+              A stronger, more metabolically efficient body. Improved insulin
+              sensitivity. Reduced belly fat. A sustainable fitness habit
+              built for <strong>life, not just a deadline.</strong>
+            </p>
+            <span class="timeline-item__tag" style="background: var(--clr-lavender-100); color: var(--clr-plum-700);">✨ Transformation Complete</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       DOCTOR NOTE SECTION
+  ============================================ -->
+  <section class="doctor-note section--tight" aria-labelledby="doctorNoteHeading">
+    <div class="container">
+      <div class="doctor-note__card reveal">
+        <div class="doctor-note__icon" role="img" aria-label="Doctor">👩‍⚕️</div>
+        <div class="doctor-note__content">
+          <h2 id="doctorNoteHeading">A Note From Your Health Coach</h2>
+          <p>
+            While this fitness plan is carefully engineered to work
+            <em>with</em> your hormones, it is not a substitute for medical care.
+            <strong>Please consult a doctor</strong> to properly diagnose and treat any
+            underlying uterine or PCOS-related issues. Exercise helps manage symptoms
+            beautifully, but medical treatment works even better alongside it.
+            You deserve both. 💜
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+  ============================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand-logo" aria-hidden="true">🌸</div>
+          <div class="footer__brand-name">ZeroFriction Fit</div>
+          <p class="footer__brand-desc">
+            A science-backed, PCOS-aware fitness system built for
+            real women with real lives. No gym required. Ever.
+          </p>
+        </div>
+        <div>
+          <p class="footer__col-title">Routine</p>
+          <ul class="footer__links" role="list">
+            <li><a href="#exercises" class="footer__link">Glute Bridge</a></li>
+            <li><a href="#exercises" class="footer__link">Clamshells</a></li>
+            <li><a href="#exercises" class="footer__link">Leg Tucks</a></li>
+            <li><a href="#exercises" class="footer__link">Pillow Squeeze</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Journey</p>
+          <ul class="footer__links" role="list">
+            <li><a href="#diagnosis" class="footer__link">The Diagnosis</a></li>
+            <li><a href="#secret-weapon" class="footer__link">Secret Weapon</a></li>
+            <li><a href="#timeline" class="footer__link">7-Month Roadmap</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 ZeroFriction Fit · Designed with 💜 for Kavindya</p>
+        <p class="footer__disclaimer">
+          This plan is for informational purposes only and is not a substitute
+          for professional medical advice. Please consult your doctor. 🩺
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+
+  <!-- ============================================
+       JAVASCRIPT
+  ============================================ -->
   <script>
-    /* Bilingual Toggle Logic */
-    const langBtn = document.getElementById('langBtn');
-    langBtn.addEventListener('click', () => {
-      const currentLang = document.body.getAttribute('data-lang');
-      const newLang = currentLang === 'en' ? 'si' : 'en';
-      document.body.setAttribute('data-lang', newLang);
+    'use strict';
+
+    /* ——— NAVIGATION SCROLL STATE ——— */
+    const navbar = document.getElementById('navbar');
+
+    const updateNavbar = () => {
+      if (window.scrollY > 60) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    };
+
+    window.addEventListener('scroll', updateNavbar, { passive: true });
+    updateNavbar();
+
+    /* ——— HAMBURGER MENU ——— */
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu   = document.getElementById('mobileMenu');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+    const openMenu = () => {
+      mobileMenu.classList.add('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeMenu = () => {
+      mobileMenu.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    };
+
+    hamburgerBtn.addEventListener('click', openMenu);
+    closeMenuBtn.addEventListener('click', closeMenu);
+
+    document.querySelectorAll('[data-close-menu]').forEach(link => {
+      link.addEventListener('click', closeMenu);
     });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        closeMenu();
+      }
+    });
+
+    /* ——— INTERSECTION OBSERVER FOR REVEAL ANIMATIONS ——— */
+    const revealElements = document.querySelectorAll(
+      '.reveal, .reveal--left, .reveal--scale'
+    );
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold:  0.12,
+        rootMargin: '0px 0px -40px 0px'
+      }
+    );
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    /* ——— HERO PROGRESS BAR ANIMATION ——— */
+    const progressFill = document.getElementById('progressFill');
+    const progressPct  = document.getElementById('progressPct');
+    const targetPct    = 5; // Start of journey
+
+    const animateProgress = () => {
+      let current = 0;
+      const step = () => {
+        if (current <= targetPct) {
+          progressFill.style.width = current + '%';
+          progressPct.textContent = current + '%';
+          current++;
+          setTimeout(step, 80);
+        }
+      };
+      step();
+    };
+
+    // Trigger progress bar when hero is in view
+    const heroObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setTimeout(animateProgress, 800);
+          heroObserver.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    heroObserver.observe(document.querySelector('.hero'));
+
+    /* ——— CIRCULAR TIMER SVG ANIMATION ——— */
+    const timerCircle   = document.getElementById('timerCircle');
+    const circumference = 2 * Math.PI * 65; // ≈ 408.4
+
+    timerCircle.style.strokeDasharray  = circumference;
+    timerCircle.style.strokeDashoffset = circumference;
+
+    const timerObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          // Fill 100% of circle to represent 10 minutes
+          setTimeout(() => {
+            timerCircle.style.strokeDashoffset = 0;
+          }, 300);
+          timerObserver.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (document.querySelector('.secret-timer')) {
+      timerObserver.observe(document.querySelector('.secret-timer'));
+    }
+
+    /* ——— SCROLL TO TOP BUTTON ——— */
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ——— SMOOTH ACTIVE NAV LINK HIGHLIGHTING ——— */
+    const sections = document.querySelectorAll('section[id], header[id]');
+    const navLinks = document.querySelectorAll('.nav__link:not(.nav__cta)');
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            navLinks.forEach(link => {
+              link.style.color = '';
+              if (link.getAttribute('href') === `#${id}`) {
+                link.style.color = 'var(--clr-rose-600)';
+              }
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.4
+      }
+    );
+
+    sections.forEach(sec => sectionObserver.observe(sec));
+
+    /* ——— EXERCISE CARD HOVER SOUND FEEDBACK (vibration API) ——— */
+    document.querySelectorAll('.exercise-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        if ('vibrate' in navigator) {
+          navigator.vibrate(8);
+        }
+      });
+    });
+
+    /* ——— COUNTER ANIMATION FOR HERO STATS ——— */
+    const animateCounters = () => {
+      const stats = [
+        { el: document.querySelector('.hero__stats .hero__stat:nth-child(2) .hero__stat-value'), target: 3, suffix: '×', duration: 800 },
+      ];
+      // Simple numeric stats only — text values like "8 min" and "Jan '27" are left as-is
+    };
+
+    /* ——— PARALLAX ORBS ON MOUSE MOVE ——— */
+    const orbs = document.querySelectorAll('.hero__bg-orb');
+
+    document.addEventListener('mousemove', (e) => {
+      const { clientX, clientY } = e;
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      const deltaX = (clientX - centerX) / centerX;
+      const deltaY = (clientY - centerY) / centerY;
+
+      orbs.forEach((orb, i) => {
+        const depth = (i + 1) * 8;
+        const x = deltaX * depth;
+        const y = deltaY * depth;
+        orb.style.transform = `translate(${x}px, ${y}px)`;
+      });
+    });
+
+    /* ——— DIAGNOSTIC: LOG ACCESSIBILITY CHECK ——— */
+    // Verify all images have alt attributes
+    document.querySelectorAll('img').forEach(img => {
+      if (!img.getAttribute('alt')) {
+        console.warn('Missing alt attribute:', img.src);
+      }
+    });
+
+    console.log('%c🌸 ZeroFriction Fit · Built with care for Kavindya', 
+      'color: #9333EA; font-weight: bold; font-size: 14px;');
   </script>
+
 </body>
 </html>
